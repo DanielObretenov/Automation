@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CsharpBasics
+namespace Problem_1
 {
     class Program
     {
