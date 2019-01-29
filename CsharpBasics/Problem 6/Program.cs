@@ -31,7 +31,7 @@ namespace Problem_6
             //Third Approach
             List<int> listNums = new List<int>(intNum);
             int maxNumber3 = listNums.Max();
-            listNums.RemoveAll(item => item == maxNumber3);
+            listNums.RemoveAll(number => number == maxNumber3);
             Console.WriteLine(listNums.Max());
         }
     }

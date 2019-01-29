@@ -14,6 +14,7 @@ namespace Problem_3
             //First Approach
             string[] arr = array1.Concat(array2).ToArray();
 
+
             foreach (var arrvalue in arr)
             {
                 Console.WriteLine(arrvalue);
@@ -38,6 +39,28 @@ namespace Problem_3
                 arr2Approach[count] = arr2;
                 count++;
             }
+            foreach (var item in arr2Approach)
+            {
+                Console.WriteLine(item);
+            }
+            // third approach
+            Console.WriteLine();
+            int newInumber = 1;
+
+            for (int i = 0; i < arr2Approach.Length; i++)
+            {
+                if (i>= 0 && i <= array1.Length - 1)
+                {
+                    arr2Approach[i] = array1[i];
+
+                }
+                else
+                {
+                    newInumber = i - (array1.Length);
+                    arr2Approach[i] = array2[newInumber];
+                }
+            }
+
             foreach (var item in arr2Approach)
             {
                 Console.WriteLine(item);

@@ -6,7 +6,7 @@ namespace Problem_4
     {
         static void Main(string[] args)
         {
-            int[] arrayInt = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int[] arrayInt = new int[] { 1, 2, 5, 4, 4, 6, 7, 8, 2 };
             //First Approach
             for (int i = arrayInt.Length - 1; i >= 0; i--)
             {
