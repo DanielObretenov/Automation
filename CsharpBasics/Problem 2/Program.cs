@@ -6,22 +6,22 @@ namespace Problem_2
     {
         static void Main(string[] args)
         {
-            string[,] newArrayStr = new string[,]
-           {
-                {"OneOne","OneTwo", "OneThree"},
-                {"TwoOne", "TwoTwo", "TwoThree"}
-           };
-
-           for (int m = newArrayStr.GetLength(0) - 1; m >= 0; m--)
+            int num = int.Parse(Console.ReadLine());
+            //first - multiplication table num by num
+            for (int row = 1; row <= num; row++)
             {
-                for (int z = newArrayStr.GetLength(1) - 1; z >= 0; z--)
+                for (int column = 1; column <= num; column++)
                 {
-                    Console.Write(newArrayStr[m, z] + " ");
+                    Console.Write($"{row * column} ");
                 }
-
                 Console.WriteLine();
             }
 
+            //second
+            for (int i = 1; i <= num; i++)
+            {
+                Console.WriteLine($"{num}X{i} = {num * i}");
+            }
         }
     }
 }

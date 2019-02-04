@@ -6,19 +6,39 @@ namespace Problem_7
     {
         static void Main(string[] args)
         {
-            int[,] array1 = new int[,] { { 1, 2, 3 }, { 1, 2, 3 } };
-            int[,] array2 = new int[,] { { 4, 5, 6 }, { 4, 5, 6 } };
+            int numStartDesc = 66;
+            int numEndDesc = 21;
+            int numStartAsc = 77;
+            int numEndAsc = 99;
 
-            for (int i = 0; i < 2; i++)
+            do
             {
-                for (int j = 0; j < 3; j++)
+                numStartDesc -= 4;
+                numStartAsc += 2;
+                if (numStartDesc >= numEndDesc && numStartAsc <= numEndAsc)
                 {
-                    Console.Write(array1[i, j] + array2[i, j] + " ");
+                    Console.WriteLine(numStartDesc);
+                    Console.WriteLine(numStartAsc);
                 }
+                else if (numStartDesc <= numEndDesc && numStartAsc >= numEndAsc)
+                {
+                    break;
+                }
+                else if (numStartDesc <= numEndDesc)
+                {
+                    Console.WriteLine("XX");
+                    Console.WriteLine(numStartAsc);
+                }
+                else if (numStartAsc >= numEndAsc)
+                {
+                    Console.WriteLine(numStartDesc);
+                    Console.WriteLine("XX");
+                }
+
                 Console.WriteLine();
+
             }
-
-
+            while (numStartDesc >= numEndDesc || numStartAsc <= numEndAsc);
         }
     }
 }

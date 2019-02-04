@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Problem_1
 {
@@ -10,17 +6,29 @@ namespace Problem_1
     {
         static void Main(string[] args)
         {
-            int[,] intArray = new int[2, 2]{
-              { 2, 3 },
-              { 2, 3 } };
+            bool isPrime = true;
+            int a = int.Parse(Console.ReadLine());
+            int b = int.Parse(Console.ReadLine());
 
-            for (int i = 0; i < intArray.GetLength(0); i++)
+            for (int j = Math.Min(a, b); j <= Math.Max(a, b); j++)
             {
-                for (int j = 0; j < intArray.GetLength(1); j++)
+                isPrime = true;
+
+                for (int i = 2; i < j; i++)
                 {
-                    Console.WriteLine($"Row {i} Column {j}");
+                    if (j % i == 0)
+                    {
+                        isPrime = false;
+                        break;
+                    }
+                }
+                if (isPrime && j>1)
+                {
+                    Console.WriteLine(j);
                 }
             }
+
+
         }
     }
 }

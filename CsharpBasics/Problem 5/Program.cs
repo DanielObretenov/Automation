@@ -1,22 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
+
 namespace Problem_5
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //list
-            Console.Write("Remove Index: ");
             int num = int.Parse(Console.ReadLine());
-            int[] arrayInt = new int[] { 1, 2, 3, 4, 5, 6, 7 };
-            List<int> listInt = new List<int>(arrayInt);
-            listInt.RemoveAt(num);
-
-            for (int i = 0; i < listInt.Count; i++)
+            int newNum = num;
+            for (int row = 1; row <= num; row++)
             {
-                Console.WriteLine(listInt[i]);
+                for (int column = 0; column < num; column++)
+                {
+                    Console.Write(row + column + " ");
+                }
+                Console.WriteLine();
             }
+
+
 
         }
     }

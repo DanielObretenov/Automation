@@ -6,19 +6,15 @@ namespace Problem_4
     {
         static void Main(string[] args)
         {
-            int[] arrayInt = new int[] { 1, 2, 5, 4, 4, 6, 7, 8, 2 };
-            //First Approach
-            for (int i = arrayInt.Length - 1; i >= 0; i--)
+            int num = int.Parse(Console.ReadLine());
+            int sum = 1;
+
+            while (num > 0)
             {
-                Console.WriteLine(arrayInt[i]);
+                sum *= num;
+                num--;
             }
-
-            //Second
-            Console.WriteLine();
-
-
-            Array.Reverse(arrayInt);
-            Array.ForEach(arrayInt, Console.WriteLine);
+            Console.WriteLine(sum);
         }
     }
 }

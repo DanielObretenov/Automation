@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-
 
 namespace Problem_3
 {
@@ -8,64 +6,20 @@ namespace Problem_3
     {
         static void Main(string[] args)
         {
-            string[] array1 = new string[] { "1FirstArray", "2FirstArray" };
-            string[] array2 = new string[] { "1SecondArray", "2SecondArray", "3SecondArray" };
+            Console.WriteLine("Enter Start Number");
+            int startNum = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Number of rows");
+            int totalRows = int.Parse(Console.ReadLine());
 
-            //First Approach
-            string[] arr = array1.Concat(array2).ToArray();
-
-
-            foreach (var arrvalue in arr)
+            for (int row = 0; row <= totalRows; row++)
             {
-                Console.WriteLine(arrvalue);
-            }
-
-            //Second Approach
-            Console.WriteLine();
-
-            int array1Lenght = array1.Length;
-            int array2Lenght = array2.Length;
-            string[] arr2Approach = new string[array1Lenght + array2Lenght];
-            int count = 0;
-
-            foreach (var arr1 in array1)
-            {
-                arr2Approach[count] = arr1;
-                count++;
-            }
-
-            foreach (var arr2 in array2)
-            {
-                arr2Approach[count] = arr2;
-                count++;
-            }
-            foreach (var item in arr2Approach)
-            {
-                Console.WriteLine(item);
-            }
-            // third approach
-            Console.WriteLine();
-            int newInumber = 1;
-
-            for (int i = 0; i < arr2Approach.Length; i++)
-            {
-                if (i>= 0 && i <= array1.Length - 1)
+                for (int keys = 1; keys <= row; keys++)
                 {
-                    arr2Approach[i] = array1[i];
-
+                    Console.Write(startNum + " ");
+                    startNum++;
                 }
-                else
-                {
-                    newInumber = i - (array1.Length);
-                    arr2Approach[i] = array2[newInumber];
-                }
+                Console.WriteLine();
             }
-
-            foreach (var item in arr2Approach)
-            {
-                Console.WriteLine(item);
-            }
-
         }
     }
 }
