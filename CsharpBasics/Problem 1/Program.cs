@@ -14,7 +14,7 @@ namespace Problem_1
             {
                 isPrime = true;
 
-                for (int i = 2; i < j; i++)
+                for (int i = 2; i < j/2; i++)
                 {
                     if (j % i == 0)
                     {

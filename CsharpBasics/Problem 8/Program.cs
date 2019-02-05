@@ -13,23 +13,21 @@ namespace Problem_8
 
             while (numStartDesc >= numEndDesc)
             {
-                numStartDesc -= 3;
+                
                 if (count != 4 && count != 7)
                 {
                     Console.WriteLine(numStartDesc);
                 }
-                //else
-                //{
-                //    if (count == 7)
-                //    {
-                //        count = 0;
-                //    }
-                //    Console.WriteLine("Skipped number " + numStartDesc);
-                //}
+                else
+                {
+                    if (count == 7)
+                    {
+                        count = 0;
+                    }
+                    Console.WriteLine("Skipped number " + numStartDesc);
+                }
+                numStartDesc -= 3;
                 count++;
-
-
-
             }
         }
     }
