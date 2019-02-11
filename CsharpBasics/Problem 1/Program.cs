@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Problem_1
 {
@@ -6,28 +7,18 @@ namespace Problem_1
     {
         static void Main(string[] args)
         {
-            bool isPrime = true;
-            int a = int.Parse(Console.ReadLine());
-            int b = int.Parse(Console.ReadLine());
+            string word = Console.ReadLine();
 
-            for (int j = Math.Min(a, b); j <= Math.Max(a, b); j++)
-            {
-                isPrime = true;
+            //Approach 1
+            char[] wordInChars = word.ToCharArray();
+            Array.Reverse(wordInChars);
+            string reversedWord = new string(wordInChars);
 
-                for (int i = 2; i < j / 2; i++)
-                {
-                    if (j % i == 0)
-                    {
-                        isPrime = false;
-                        break;
-                    }
-                }
-                if (isPrime && j > 1)
-                {
-                    Console.WriteLine(j);
-                }
-            }
+            Console.WriteLine(word.Equals(reversedWord)
+            ? $"{word} = {reversedWord}"
+            : "Nope");
 
+            // Aproach 2
 
         }
     }

@@ -6,22 +6,10 @@ namespace Problem_2
     {
         static void Main(string[] args)
         {
-            int num = int.Parse(Console.ReadLine());
-            //first - multiplication table num by num
-            for (int row = 1; row <= num; row++)
-            {
-                for (int column = 1; column <= num; column++)
-                {
-                    Console.Write($"{row * column} ");
-                }
-                Console.WriteLine();
-            }
+            string sentence = "The quick brown fox jumps over the lazy dog.";
+            string[] words = sentence.Split(' ');
+            Console.WriteLine(words.Length);
 
-            //second
-            for (int i = 1; i <= num; i++)
-            {
-                Console.WriteLine($"{num}X{i} = {num * i}");
-            }
         }
     }
 }

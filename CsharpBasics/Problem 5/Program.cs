@@ -6,19 +6,23 @@ namespace Problem_5
     {
         static void Main(string[] args)
         {
-            int num = int.Parse(Console.ReadLine());
-            int newNum = num;
-            for (int row = 1; row <= num; row++)
+
+            string word = Console.ReadLine();
+            string newWord = "";
+
+            for (int i = 0; i <= word.Length - 1; i++)
             {
-                for (int column = 0; column < num; column++)
+                if (char.IsUpper(word[i]))
                 {
-                    Console.Write(row + column + " ");
+                    newWord += char.ToLower(word[i]);
                 }
-                Console.WriteLine();
+                else
+                {
+                    newWord += char.ToUpper(word[i]);
+                }
+
             }
-
-
-
+            Console.WriteLine(newWord);
         }
     }
 }

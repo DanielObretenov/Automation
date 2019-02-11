@@ -6,15 +6,13 @@ namespace Problem_4
     {
         static void Main(string[] args)
         {
-            int num = int.Parse(Console.ReadLine());
-            int sum = 1;
+            string word = Console.ReadLine();
 
-            while (num > 0)
-            {
-                sum *= num;
-                num--;
-            }
-            Console.WriteLine(sum);
+            //Approach 1
+            char[] wordInChars = word.ToCharArray();
+            Array.Reverse(wordInChars);
+
+            Console.WriteLine(new string(wordInChars));
         }
     }
 }

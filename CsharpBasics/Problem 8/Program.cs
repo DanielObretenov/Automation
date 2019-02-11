@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Problem_8
 {
@@ -6,29 +7,35 @@ namespace Problem_8
     {
         static void Main(string[] args)
         {
+            string sentence = Console.ReadLine().ToLower();
+            List<char> letters = new List<char>();
+            bool moteThanOne = false;
 
-            int numStartDesc = 97;
-            int numEndDesc = 54;
-            int count = 1;
-
-            while (numStartDesc >= numEndDesc)
+            for (int letter = 0; letter < sentence.Length - 1; letter++)
             {
-                
-                if (count != 4 && count != 7)
+                for (int wordCheck = letter + 1; wordCheck <= sentence.Length - 1; wordCheck++)
                 {
-                    Console.WriteLine(numStartDesc);
-                }
-                else
-                {
-                    if (count == 7)
+                    if (sentence[letter] == sentence[wordCheck])
                     {
-                        count = 0;
+                        moteThanOne = true;
+                        break;
                     }
-                    Console.WriteLine("Skipped number " + numStartDesc);
                 }
-                numStartDesc -= 3;
-                count++;
+
+                if (!letters.Contains(sentence[letter]) && moteThanOne && sentence[letter] != ' ')
+                {
+                    letters.Add(sentence[letter]);
+                }
+                moteThanOne = false;
             }
+            Console.WriteLine(string.Join(',', letters));
+
+
+
+
+
+
+
         }
     }
 }

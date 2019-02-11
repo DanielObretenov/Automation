@@ -6,9 +6,9 @@ namespace Problem_6
     {
         static void Main(string[] args)
         {
-            for (int i = 10; i < 33; i += 2)
+            for (int i = 0; i <= 100; i++)
             {
-                Console.WriteLine(i);
+                Console.WriteLine($"Daniel.obretenov{i:d3}@mentormate.com");
             }
         }
     }

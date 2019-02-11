@@ -6,20 +6,37 @@ namespace Problem_3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter Start Number");
-            int startNum = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Number of rows");
-            int totalRows = int.Parse(Console.ReadLine());
+            //No Caps
+            string sentence = Console.ReadLine();
 
-            for (int row = 0; row <= totalRows; row++)
+            // With Caps 
+            //string sentence2 = Console.ReadLine().ToLower();
+
+            int countA = 0;
+            int countS = 0;
+            int countE = 0;
+
+
+            for (int i = 0; i <= sentence.Length - 1; i++)
             {
-                for (int keys = 1; keys <= row; keys++)
+
+                if (sentence[i].Equals('a'))
                 {
-                    Console.Write(startNum + " ");
-                    startNum++;
+                    countA++;
                 }
-                Console.WriteLine();
+                else if (sentence[i].Equals('s'))
+                {
+                    countS++;
+                }
+                else if (sentence[i].Equals('e'))
+                {
+                    countE++;
+                }
             }
+            Console.WriteLine($"Count 'a' = {countA}");
+            Console.WriteLine($"Count 's' = {countS}");
+            Console.WriteLine($"Count 'e' = {countE}");
+
         }
     }
 }
