@@ -14,7 +14,7 @@ namespace Problem_1
             {
                 isPrime = true;
 
-                for (int i = 2; i < j/2; i++)
+                for (int i = 2; i < j / 2; i++)
                 {
                     if (j % i == 0)
                     {
@@ -22,7 +22,7 @@ namespace Problem_1
                         break;
                     }
                 }
-                if (isPrime && j>1)
+                if (isPrime && j > 1)
                 {
                     Console.WriteLine(j);
                 }
