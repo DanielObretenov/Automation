@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Problem_2
 {
@@ -6,10 +7,20 @@ namespace Problem_2
     {
         static void Main(string[] args)
         {
-            string sentence = "The quick brown fox jumps over the lazy dog.";
-            string[] words = sentence.Split(' ');
-            Console.WriteLine(words.Length);
-
+            string letters = Console.ReadLine();
+            List<string> list1 = new List<string>(letters.Split(' '));
+            string resultString = Console.ReadLine();
+            List<string> ResultList = new List<string>(resultString.Split(' '));
+            int count = 0;
+            foreach (var letter in list1)
+            {
+                if (ResultList.Contains(letter))
+                {
+                    count++;
+                }
+            }
+            bool countMatches = count == ResultList.Count;
+            Console.WriteLine(countMatches ? true :false);
         }
     }
 }

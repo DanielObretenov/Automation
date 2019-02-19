@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Problem_5
 {
@@ -6,23 +7,22 @@ namespace Problem_5
     {
         static void Main(string[] args)
         {
+            var list1 = new List<string>() { "Black", "Red", "Maroon", "Yellow" };
+            var list2 = new List<string>() { "#000000", "#FF0000", "#800000", "#FFFF00" };
+            var result = new Dictionary<string, string>();
 
-            string word = Console.ReadLine();
-            string newWord = "";
-
-            for (int i = 0; i <= word.Length - 1; i++)
+            for (int i = 0; i < list1.Count; i++)
             {
-                if (char.IsUpper(word[i]))
+                if (!result.ContainsKey(list1[i]))
                 {
-                    newWord += char.ToLower(word[i]);
+                    result.Add(list1[i], list2[i]);
                 }
-                else
-                {
-                    newWord += char.ToUpper(word[i]);
-                }
-
             }
-            Console.WriteLine(newWord);
+
+            foreach (var pair in result)
+            {
+                Console.WriteLine($"key: {pair.Key}, value: {pair.Value}");
+            }
         }
     }
 }

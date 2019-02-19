@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Problem_6
 {
@@ -6,9 +8,14 @@ namespace Problem_6
     {
         static void Main(string[] args)
         {
-            for (int i = 0; i <= 100; i++)
+            var list1 = new List<int>() { 1, 2, 3 };
+            var list2 = new List<int>() { 5, 7 };
+
+            list1.RemoveAt(list1.Count - 1);
+            list1.AddRange(list2);
+            foreach (var item in list1)
             {
-                Console.WriteLine($"Daniel.obretenov{i:d3}@mentormate.com");
+                Console.WriteLine(item);
             }
         }
     }

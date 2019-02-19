@@ -14,9 +14,7 @@ namespace Problem_9
             int countLetters = 0;
             int countDigits = 0;
             int countSpecChar = 0;
-
-            Console.WriteLine(words);
-
+            
             for (int i = 0; i <= words.Length - 1; i++)
             {
                 if (char.IsLetter(words[i]))

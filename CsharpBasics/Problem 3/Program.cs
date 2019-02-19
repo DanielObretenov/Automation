@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Problem_3
 {
@@ -6,36 +8,34 @@ namespace Problem_3
     {
         static void Main(string[] args)
         {
-            //No Caps
-            string sentence = Console.ReadLine();
-
-            // With Caps 
-            //string sentence2 = Console.ReadLine().ToLower();
-
-            int countA = 0;
-            int countS = 0;
-            int countE = 0;
-
-
-            for (int i = 0; i <= sentence.Length - 1; i++)
+            List<string> words = new List<string>()
+            { "apple",
+              "banana",
+              "orange",
+              "tomato",
+              "carrot",
+              "papaya",
+              "pitanga",
+              "ape"};
+            var result = new Dictionary<string, int>();
+            string firstAndLast ;
+            foreach (var word in words.Where(x => x.Length > 2))
             {
-
-                if (sentence[i].Equals('a'))
+                firstAndLast = string.Format("{0}{1}", word[0], word[word.Length - 1]);
+                firstAndLast = firstAndLast.ToLower();
+                if (result.ContainsKey(firstAndLast))
                 {
-                    countA++;
+                    result[firstAndLast]++;
                 }
-                else if (sentence[i].Equals('s'))
+                else
                 {
-                    countS++;
-                }
-                else if (sentence[i].Equals('e'))
-                {
-                    countE++;
+                    result.Add(firstAndLast, 1);
                 }
             }
-            Console.WriteLine($"Count 'a' = {countA}");
-            Console.WriteLine($"Count 's' = {countS}");
-            Console.WriteLine($"Count 'e' = {countE}");
+            foreach (var item in result.Where(x => x.Value == result.Values.Max()))
+            {
+                Console.WriteLine($"Key: {item.Key} Value: {item.Value}");
+            }
 
         }
     }

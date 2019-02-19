@@ -7,35 +7,22 @@ namespace Problem_8
     {
         static void Main(string[] args)
         {
-            string sentence = Console.ReadLine().ToLower();
-            List<char> letters = new List<char>();
-            bool moteThanOne = false;
+            string word = Console.ReadLine();
+            var pairs = new Dictionary<char, int>();
 
-            for (int letter = 0; letter < sentence.Length - 1; letter++)
+            for (int i = 0; i < word.Length; i++)
             {
-                for (int wordCheck = letter + 1; wordCheck <= sentence.Length - 1; wordCheck++)
+                if (!pairs.ContainsKey(word[i]))
                 {
-                    if (sentence[letter] == sentence[wordCheck])
-                    {
-                        moteThanOne = true;
-                        break;
-                    }
+                    pairs.Add(word[i], 1);
                 }
-
-                if (!letters.Contains(sentence[letter]) && moteThanOne && sentence[letter] != ' ')
+                else
                 {
-                    letters.Add(sentence[letter]);
+                    pairs[word[i]]++;
                 }
-                moteThanOne = false;
             }
-            Console.WriteLine(string.Join(',', letters));
 
-
-
-
-
-
-
+            Console.WriteLine(string.Join(",", pairs));
         }
     }
 }

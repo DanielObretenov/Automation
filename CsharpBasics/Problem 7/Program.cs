@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Problem_7
 {
@@ -6,16 +7,19 @@ namespace Problem_7
     {
         static void Main(string[] args)
         {
-            DateTime dateA = new DateTime(1999, 10, 22, 5, 2, 3);
-            //YYYYMMDDHHmm
-            Console.WriteLine(
-                $"your.name+" +
-                $"{dateA.Year}" +
-                $"{dateA.Month}" +
-                $"{dateA.Day}" +
-                $"{dateA.Hour}" +
-                $"{dateA.Minute}" +
-                $"@mentormate.com");
+            var result = new Dictionary<int, int>();
+            int number = int.Parse(Console.ReadLine());
+            for (int i = 1; i <= number; i++)
+            {
+                result.Add(i, i * i);
+            }
+            foreach (var pair in result)
+            {
+                Console.WriteLine($"Key: {pair.Key}, Value: {pair.Value}");
+            }
+
+
+
         }
     }
 }

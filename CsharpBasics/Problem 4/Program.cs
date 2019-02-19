@@ -1,18 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace Problem_4
+namespace Program_4
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string word = Console.ReadLine();
+            List<string> list1 = new List<string>() { "s", "d", "a" };
+            List<string> list2 = new List<string>() { "c", "z", "a"  };
+            bool contains = false;
 
-            //Approach 1
-            char[] wordInChars = word.ToCharArray();
-            Array.Reverse(wordInChars);
-
-            Console.WriteLine(new string(wordInChars));
+            foreach (var symbol in list1)
+            {
+                if (list2.Contains(symbol))
+                {
+                    contains = true;
+                }
+            }
+            Console.WriteLine(contains);
         }
     }
 }
