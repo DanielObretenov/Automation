@@ -1,35 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace Problem_1
+namespace LectureSeven
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int[] array1 = new int[] { 1, 2, 3, 4 };
-
-            //first approach
-            List<int> array3 = new List<int>(array1);
-            foreach (var number in array3)
-            {
-                Console.WriteLine(number * 2);
-            }
-
+            Student firstStudent = new Student("Daniel", "Obretenov", "Yes");
+            firstStudent.Subject = "Maths";
+            firstStudent.YearAdmission = "2001";
+            firstStudent.Gender = "Male";
+            firstStudent.Hometown = "Sofia";
+            firstStudent.StudentNumberGenerator();
+            firstStudent.RandomDateOfBirth();
+            firstStudent.EmailSimulator();
+            firstStudent.ViewProfile();
             Console.WriteLine();
 
-            //second
-            int[] array2 = new int[array1.Length];
+            Student secondtStudent = new Student("Second", "User", "text");
+            secondtStudent.Subject = "Chemistry";
+            secondtStudent.StudentNumberGenerator();
+            secondtStudent.RandomDateOfBirth();
+            secondtStudent.EmailSimulator();
+            secondtStudent.ViewProfile();
+            Console.WriteLine();
 
-            for (int i = 0; i < array1.Length; i++)
-            {
-                array2[i] = array1[i] * 2;
-            }
+            Student thirdStudent = new Student("Dan", "Obretenov", "No", "Male");
+            thirdStudent.Address.Building = 32;
+            thirdStudent.Address.Floor = 1;
+            thirdStudent.Address.Street = "Tsvetan Lazarov";
+            thirdStudent.ViewProfile();
 
-            foreach (var number in array2)
-            {
-                Console.WriteLine(number);
-            }
+
 
 
 
