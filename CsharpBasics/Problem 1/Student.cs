@@ -7,17 +7,7 @@ namespace LectureSeven
 {
     class Student
     {
-        //        Име
-        //   Фамилия
-        //Студентски номер(Номерът има следният формат: Година на приемане + Специалност + Дата на раждане + 2 случайни (random) цифри)
-        //Специалност
-        //email
-        //Дата на раждане
-        //Година на прием
-        //Пол(м/ж)
-        //Роден град
-        //Статус(активен/прекъснал)
-        //Настоящ Адрес
+     
 
         //fields
         private string firstName;
@@ -33,22 +23,25 @@ namespace LectureSeven
         private Random gen = new Random();
         private DateTime currnetDate = DateTime.Now;
         private StudendCurrentAddress address;
+        private Regex yearOfAdmissionRegex = new Regex(@"(\d{1,2})([A-z]+)(\d{4})(\d{2})(\d{2})(\d{2})") ;
+        private Match match;
 
-        public Student(string firstname, string lastname, string educationStatus)
+
+        public Student(string firstname, string lastname)
         {
             this.FirstName = firstname;
             this.LastName = lastname;
             this.Subject = "null";
-            this.dateOfBirth = RandomDateOfBirth();
+            this.DateOfBirth = RandomDateOfBirth();
             this.YearAdmission = "null";
             this.Gender = "null";
             this.Hometown = "null";
-            this.EducationStatus = educationStatus;
+            this.EducationStatus = "inactive";
             this.address = new StudendCurrentAddress("Street", 152);
         }
 
-        public Student(string firstname, string lastname, string educationStatus, string gender)
-        : this(firstname, lastname, educationStatus)
+        public Student(string firstname, string lastname,  string gender)
+        : this(firstname, lastname )
         {
             this.gender = gender;
         }
@@ -65,18 +58,16 @@ namespace LectureSeven
             get { return educationStatus; }
             set
             {
-                if (value.ToLower() == "yes")
+                if (value.ToString().ToLower() == "active")
                 {
-                    educationStatus = "active";
-                }
-                else if (value.ToLower() == "no")
-                {
-                    educationStatus = "inactive";
+
+                    this.educationStatus = "active";
                 }
                 else
                 {
-                    educationStatus = "invalid";
+                    this.educationStatus = "inactive";
                 }
+
             }
         }
 
@@ -114,13 +105,54 @@ namespace LectureSeven
 
         public string Email
         {
-            get { return email; }
+            get { return EmailSimulator(); }
         }
 
         public string Subject
         {
             get { return subject; }
             set { subject = value; }
+        }
+        public DateTime DateOfBirth
+        {
+            get {return dateOfBirth; }
+            set
+            {
+                if (!value.Year.Equals(0001) && value.Year < 2000 )
+                {
+                    this.dateOfBirth = value;
+                }
+                else
+                {
+                    this.dateOfBirth = RandomDateOfBirth();
+                }
+
+               
+            }
+        }
+
+        public string StudentNumber
+        {
+            get { return this.studentNumber; }
+            set
+            {
+                match = yearOfAdmissionRegex.Match(value);
+                int.TryParse(this.yearAdmission, out int result);
+                if (match.Groups[1].ToString() == (result - 2000 ).ToString("d2") 
+                    && match.Groups[2].ToString() == this.Subject
+                    && match.Groups[3].ToString() == this.DateOfBirth.Year.ToString()
+                    && match.Groups[4].ToString() == this.DateOfBirth.Month.ToString("d2")
+                    && match.Groups[5].ToString() == this.DateOfBirth.Day.ToString("d2")
+                    && match.Groups[6].ToString().Length == 2)
+                {
+                    this.studentNumber = value;
+                }
+                else
+                {
+                    this.studentNumber = StudentNumberGenerator();
+                }
+            
+            }
         }
 
         public string LastName
@@ -130,7 +162,12 @@ namespace LectureSeven
             {
                 if (Regex.IsMatch(value, @"^[a-zA-Z]+$"))
                 {
-                    lastName = value;
+                    this.lastName = value;
+                }
+                else
+                {
+                    this.lastName = "Invalid";
+
                 }
             }
         }
@@ -142,51 +179,62 @@ namespace LectureSeven
             {
                 if (Regex.IsMatch(value, @"^[a-zA-Z]+$"))
                 {
-                    firstName = value;
+                    this.firstName = value;
 
+                }
+                else
+                {
+                    this.firstName = "Invalid"; 
                 }
             }
 
         }
         //methods
 
-        public string EmailSimulator()
+        private string EmailSimulator()
         {
+            if (this.firstName != "Invalid" && this.lastName != "Invalid")
+            {
+                this.email = $"{this.FirstName}.{this.LastName}@mentormate.com";
+            }
+            else
+            {
+                this.email = "Please Enter Valid First and Last Name";
+            }
             return
-            this.email = $"{this.FirstName}.{this.LastName}@mentormate.com";
+            this.email ;
 
         }
-        public DateTime RandomDateOfBirth()
+
+        private DateTime RandomDateOfBirth()
         {
             DateTime startDate = new DateTime(currnetDate.Year - 49, currnetDate.Month, currnetDate.Day);
             DateTime endDate = new DateTime(currnetDate.Year - 19, currnetDate.Month, currnetDate.Day);
             int range = (endDate - startDate).Days;
             return this.dateOfBirth = startDate.AddDays(gen.Next(1, range));
         }
+
+        private string StudentNumberGenerator()
+        {
+            return
+            this.studentNumber = string.Format(this.gen.Next(1, 19) + this.Subject + this.dateOfBirth.Year + this.dateOfBirth.Month.ToString("d2") + this.dateOfBirth.Day.ToString("d2") + this.gen.Next(1, 10) + this.gen.Next(1, 10)) + " Randomly Generated";
+            
+        }
+
         public void ViewProfile()
         {
             Console.WriteLine("First Name: " + this.FirstName);
             Console.WriteLine("Last Name: " + this.LastName);
             Console.WriteLine("Subject: " + this.Subject);
             Console.WriteLine("email: " + this.Email);
-            Console.WriteLine("DOB: " + this.dateOfBirth.ToString("yyyy/MM/dd"));
+            Console.WriteLine("DOB: " + this.DateOfBirth.ToString("yyyy/MM/dd"));
             Console.WriteLine("Admission: " + this.YearAdmission);
             Console.WriteLine("Gender: " + this.Gender);
             Console.WriteLine("Hometown: " + this.Hometown);
             Console.WriteLine("Education Status: " + this.EducationStatus);
-            Console.WriteLine("Student Number: " + this.studentNumber);
-
+            Console.WriteLine("Student Number: " + this.StudentNumber);
             this.address.ViewAdderss();
         }
-
-        public string StudentNumberGenerator()
-        {
-
-            return
-            this.studentNumber = string.Format(this.gen.Next(1, 19) + this.Subject + this.dateOfBirth.Year + this.dateOfBirth.Month + this.dateOfBirth.Day + this.gen.Next(1, 10) + this.gen.Next(1, 10));
-
-        }
-
 
     }
 }
