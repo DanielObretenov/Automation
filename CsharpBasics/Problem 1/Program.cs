@@ -13,7 +13,7 @@ namespace LectureSeven
             firstStudent.YearAdmission = "2011";
             firstStudent.Gender = "Male";
             firstStudent.Hometown = "Sofia";
-            firstStudent.DateOfBirth = new DateTime(2011, 11, 01);
+            firstStudent.DateOfBirth = new DateTime(1999, 12, 01);
             firstStudent.StudentNumber = "11Maths1999110142";
             firstStudent.ViewProfile();
             Console.WriteLine();
