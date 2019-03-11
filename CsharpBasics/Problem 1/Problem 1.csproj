@@ -43,8 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Player.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Accounts\Account.cs" />
+    <Compile Include="Accounts\Credit Account.cs" />
+    <Compile Include="Accounts\Deposit Account.cs" />
+    <Compile Include="Accounts\Mortgage Account.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Interfaces\IBusinessAccount.cs" />
+    <Compile Include="Interfaces\IPersonalAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
