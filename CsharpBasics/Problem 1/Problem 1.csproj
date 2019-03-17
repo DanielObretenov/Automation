@@ -43,17 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accounts\Account.cs" />
-    <Compile Include="Accounts\Credit Account.cs" />
-    <Compile Include="Accounts\Deposit Account.cs" />
-    <Compile Include="Accounts\Mortgage Account.cs" />
     <Compile Include="Class1.cs" />
-    <Compile Include="Interfaces\IBusinessAccount.cs" />
-    <Compile Include="Interfaces\IPersonalAccount.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="EGNValidator.cs" />
+    <Compile Include="Person.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
