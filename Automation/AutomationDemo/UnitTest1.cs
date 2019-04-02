@@ -33,10 +33,22 @@ namespace AutomationTest
             Assert.IsTrue(driver.Url.Contains(url));
 
         }
+     
+
         [TearDown]
         public void QuitDriver()
         {
             driver.Dispose();
+        }
+
+        [Test]
+        [Ignore("Ignore Facebook")]
+        [Category("Ignored")]
+
+        public void IgnoreTest()
+        {
+            driver.Navigate().GoToUrl("https://www.facebook.com/");
+            Assert.IsTrue(driver.Url.Contains("https://www.facebook.com/"));
         }
     }
 

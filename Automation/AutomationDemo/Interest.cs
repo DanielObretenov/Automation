@@ -14,7 +14,7 @@ namespace AutomationTest
     {
         //testBorders
         [Test]
-        [Category("CalculatePercentageIsPercentageCorrect")]
+        [Category("IsPercentageCorrect")]
         [TestCase(-1, 0)]
         [TestCase(0.3, 3)]
         [TestCase(100, 3)]
@@ -30,10 +30,10 @@ namespace AutomationTest
 
         //testValuesFrom100to1000
         [Test]
-        [Category("CalculatePercentageIsPercentageCorrect")]
+        [Category("IsPercentageCorrect")]
 
         [TestCaseSource("GetValuesFrom100to1000")]
-        public void PercentageFrom0To100(decimal accountBalance)
+        public void PercentagesFrom100to1000(decimal accountBalance)
         {
             decimal actualInterest = CalcInterest(accountBalance);
         }
