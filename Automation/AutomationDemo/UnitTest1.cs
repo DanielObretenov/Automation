@@ -23,7 +23,7 @@ namespace AutomationTest
 
         [TestCase("https://www.abv.bg")]
         [TestCase("https://www.chess.com/")]
-        [TestCase("https://www.sportal.bg")]
+        [TestCase("https://www.yahoo.bg")]
         [TestCase("https://www.youtube.com")]
         [TestCase("https://www.google.com")]
 
@@ -50,6 +50,7 @@ namespace AutomationTest
             driver.Navigate().GoToUrl("https://www.facebook.com/");
             Assert.IsTrue(driver.Url.Contains("https://www.facebook.com/"));
         }
+
     }
 
 }
