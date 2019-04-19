@@ -71,13 +71,13 @@ namespace AutomationDemo
         //Parameteralized Test
         [Test]
         [Category("Parameteralized LoginTests")]
-        [TestCase( "tomsmith", "SuperSecretPassword!")]
-        [TestCase( "tomsmith", "NewPassword")]
-        [TestCase("NewName", "SuperSecretPassword!")]
-        [TestCase( "NewName", "NewPassword!")]
-        [TestCase("", "")]
+        [TestCase( "tomsmith", "SuperSecretPassword!", "You logged into a secure area!\r\n×")]
+        [TestCase( "tomsmith", "NewPassword", "Your password is invalid!\r\n×")]
+        [TestCase("NewName", "SuperSecretPassword!", "Your username is invalid!\r\n×")]
+        [TestCase( "NewName", "NewPassword!", "Your username is invalid!\r\n×")]
+        [TestCase("", "", "Your username is invalid!\r\n×")]
 
-        public void Login(string actUsername, string actPassword)
+        public void Login(string actUsername, string actPassword, string expectedMsg)
         {
 
             //Navigate to URL
@@ -102,31 +102,34 @@ namespace AutomationDemo
 
             //Assert Fields
             string actMsgLogIn = driver.FindElement(By.Id("flash")).Text;
-            Assert.AreEqual(actMsgLogIn, actLogInMsg(actUsername, actPassword));
+            Assert.AreEqual(actMsgLogIn, expectedMsg);
         }
 
-        public string actLogInMsg(string actUsername, string actPassword)
-        {
-            string expMsgLogIn;
+        //public string actLogInMsg(string actUsername, string actPassword)
+        //{
+        //    string expMsgLogIn;
+        //    string validUsername = "tomsmith";
+        //    string validPassword = "SuperSecretPassword!";
 
-            if (actUsername == "tomsmith" && actPassword == "SuperSecretPassword!")
-            {
-                // Assert Log in message
-                expMsgLogIn = "You logged into a secure area!\r\n×";
 
-            }
-            else if (actUsername == "tomsmith" && actPassword != "SuperSecretPassword!")
-            {
-                // Assert Log in message
-                expMsgLogIn = "Your password is invalid!\r\n×";
-            }
-            else
-            {
-                // Assert Log in message
-                expMsgLogIn = "Your username is invalid!\r\n×";
-            }
-            return expMsgLogIn;
-        }
+        //    if (actUsername == validUsername && actPassword == validPassword)
+        //    {
+        //        // Assert Log in message
+        //        expMsgLogIn = "You logged into a secure area!\r\n×";
+
+        //    }
+        //    else if (actUsername == validUsername && actPassword != validPassword)
+        //    {
+        //        // Assert Log in message
+        //        expMsgLogIn = "Your password is invalid!\r\n×";
+        //    }
+        //    else
+        //    {
+        //        // Assert Log in message
+        //        expMsgLogIn = "Your username is invalid!\r\n×";
+        //    }
+        //    return expMsgLogIn;
+        //}
 
         [Test]
         [Category("Dropdowns")]
@@ -141,15 +144,16 @@ namespace AutomationDemo
             int randomOption1 = rnd.Next(0,dropdown.Options.Count);
             int randomOption2 = rnd.Next(0,dropdown.Options.Count);
 
+
             if (dropdown.IsMultiple)
             {
                 dropdown.SelectByIndex(randomOption1);
                 dropdown.SelectByIndex(randomOption2);
 
-                Assert.IsTrue(dropdown.Options.ElementAt(randomOption1).Selected);
-                Assert.IsTrue(dropdown.Options.ElementAt(randomOption2).Selected);
+                Assert.IsTrue(dropdown.Options.ElementAt(randomOption1).Selected 
+                    && dropdown.Options.ElementAt(randomOption2).Selected);
             }
-            for (int i = 0; i < dropdown.Options.Count - 1; i++)
+            for (int i = 0; i < dropdown.Options.Count ; i++)
             {
                 Console.WriteLine(dropdown.Options.ElementAt(i).Text);
             }
@@ -188,6 +192,7 @@ namespace AutomationDemo
                 int randomNum = rnd.Next(0, radioButtons.Count);
                 radioButtons.ElementAt(randomNum).Click();
                 Assert.IsTrue(radioButtons.ElementAt(randomNum).Selected);
+                Thread.Sleep(1000);
             }
             foreach (var element in radioButtons)
             {
@@ -218,7 +223,7 @@ namespace AutomationDemo
 
             for (int i = 0; i < checkboxes.Count; i++)
             {
-                Console.Write(checkboxes.ElementAt(i).Selected);
+                Console.WriteLine(checkboxes.ElementAt(i).Selected);
             }
         
         }
@@ -229,7 +234,6 @@ namespace AutomationDemo
         public void PersonalInfoForm()
         {
             driver.Navigate().GoToUrl("https://www.toolsqa.com/automation-practice-form/");
-            Assert.IsTrue(driver.Url.Contains("https://www.toolsqa.com/automation-practice-form/"));
             // Send Keys first name
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys("Daniel");
@@ -279,7 +283,7 @@ namespace AutomationDemo
             IList<IWebElement> automationToolList = driver.FindElements(By.Name("tool"));
             int rndTool1 = rnd.Next(0, automationToolList.Count);
             int rndTool2 = rnd.Next(0, automationToolList.Count);
-            while (rndTool1 == rndTool2)
+            while (rndTool1 == rndTool2 && automationToolList.Count >1)
             {
                 rndTool2 = rnd.Next(0, automationToolList.Count);
             }
@@ -327,6 +331,8 @@ namespace AutomationDemo
         }
 
         [Test]
+        [Category("Hover")]
+
         public void DownloadCsv()
         {
 
@@ -339,19 +345,18 @@ namespace AutomationDemo
 
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-             driver.FindElement(By.LinkText("Enabled")).Click();
-           // action.MoveToElement(driver.FindElement(By.LinkText("Enabled")));
+           //  driver.FindElement(By.LinkText("Enabled")).Click();
+           action.MoveToElement(driver.FindElement(By.LinkText("Enabled"))).Perform();
 
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.LinkText("Downloads")));
-            driver.FindElement(By.LinkText("Downloads")).Click();
+           wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.LinkText("Downloads")));
 
-            //action.MoveToElement(driver.FindElement(By.LinkText("Downloads")));
+          //  driver.FindElement(By.LinkText("Downloads")).Click();
+            action.MoveToElement(driver.FindElement(By.LinkText("Downloads"))).Perform();
 
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.LinkText("PDF")));
             driver.FindElement(By.LinkText("PDF")).Click();
 
             //action.MoveToElement(driver.FindElement(By.LinkText("PDF")));
-
            // action.Click().Build().Perform();
 
           
