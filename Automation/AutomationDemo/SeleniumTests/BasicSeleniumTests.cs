@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using AutomationDemo.SeleniumTests;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
@@ -18,26 +19,12 @@ namespace AutomationDemo
 {
     [TestFixture]
 
-    public class SeleniumTests
+    public class BasicSeleniumTests: BaseTest
     {
-        IWebDriver driver;
-
-        [SetUp]
-        public void SetDriver()
-        {
-            driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-            driver.Manage().Window.Maximize();
-
-          //  driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5); 
-        }
-
-        [TearDown]
-        public void QuitDriver()
-        {
-            driver.Dispose();
-        }
+    
         [Test]
         [Category("LoginTest")]
+
         public void LogInTest()
         {
             // Navigate to URL
@@ -355,6 +342,8 @@ namespace AutomationDemo
 
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.LinkText("PDF")));
             driver.FindElement(By.LinkText("PDF")).Click();
+
+
 
             //action.MoveToElement(driver.FindElement(By.LinkText("PDF")));
            // action.Click().Build().Perform();
