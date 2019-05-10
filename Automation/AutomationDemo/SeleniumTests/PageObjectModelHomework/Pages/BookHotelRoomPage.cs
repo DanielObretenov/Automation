@@ -33,7 +33,6 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         private string address = "address";
         private string couponField = "12532";
         private IList<IWebElement> Countries;
-        private Actions action;
         public BookHotelRoomPage(IWebDriver webDriver) : base(webDriver)
         {
 
@@ -59,9 +58,6 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
             webDriver.FindElement(CouponField).Clear();
             webDriver.FindElement(CouponField).SendKeys(couponField);
             JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", webDriver.FindElement(applyCoupon), this.webDriver);
-
-            //action = new Actions(webDriver);
-            //action.MoveToElement(webDriver.FindElement(applyCoupon)).Build().Perform();
             webDriver.FindElement(applyCoupon).Click();
             Wait.AlertIsPresent(this.webDriver);
             Alerts.HandleAlert(false, this.webDriver);
