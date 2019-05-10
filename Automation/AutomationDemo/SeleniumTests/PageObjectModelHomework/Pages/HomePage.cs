@@ -23,6 +23,7 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         private static readonly By ToursButton = By.CssSelector("#tours button");
         private static readonly By FeaturedHotelsPrices = By.XPath("//div[@class='main_slider']//span[@class='text-center']");
         private static readonly By FeaturedHotelsImg = By.XPath("//div[@class='main_slider']//span[@class='text-center']//..//..//..//div[@class='imgLodBg']");
+        private static readonly By FeaturedHotelsImgNoPrices = By.CssSelector("div.featured-back div.imgLodBg");
         private static readonly By FooterSection = By.CssSelector("div.footer-section");
         private static readonly By FooterSectionSignUpButton = By.XPath("//div[@id='footer']//a[@class='btn btn-warning']");
         private static readonly By TourPrices = By.CssSelector("div.hotel-person span");
@@ -30,7 +31,14 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         private static readonly By FeaturedHotelsSection = By.CssSelector("div.featured-back");
         private static readonly By RightArrowForFeaturedHotels = By.CssSelector("i.icon-right-open-3");
         private static readonly By BookButtonFeaturedHotels = By.XPath("//a[@class='thm-btn btn-block']");
+        private static readonly By CountryNameFeaturedHotels = By.CssSelector("a.loader.wow.animated");
         private double minPriceRoom;
+        IList<IWebElement> featuredHotelsPricesList;
+        IList<IWebElement> featuredHotelsImages;
+        IList<IWebElement> featuredHotelsCountryName;
+        int[] priceOptions;
+        Actions action;
+        bool FeaturedHotelsHavePrices;
 
         public double MinPriceRoom
         {
@@ -103,27 +111,51 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
 
         public HotelPage FeaturedHoteWithLowestPrice()
         {
-            IList<IWebElement> featuredHotelsPricesList = webDriver.FindElements(FeaturedHotelsPrices);
-            IList<IWebElement> featuredHotelsImages = webDriver.FindElements(FeaturedHotelsImg);
-            Actions action = new Actions(webDriver);
-            int[] priceOptions = new int[featuredHotelsPricesList.Count];
+         
+            action = new Actions(webDriver);
             JSHelper.RunJSEaster("arguments[0].scrollIntoView(true)", webDriver.FindElement(FeaturedHotelsSection), this.webDriver);
+            featuredHotelsPricesList = webDriver.FindElements(FeaturedHotelsPrices);
+            featuredHotelsImages = webDriver.FindElements(FeaturedHotelsImg);
+            int[] priceOptions = new int[featuredHotelsPricesList.Count];
+            ClickOnFeaturedHotel();
+            return new HotelPage(webDriver);
+        }
+
+        public void ClickOnFeaturedHotel()
+        {
+
+            if (HasPrices())
+            {
+                int minPriceIndex = Array.IndexOf(priceOptions, priceOptions.Min());
+                action.MoveToElement(featuredHotelsPricesList[minPriceIndex]).Perform();
+                featuredHotelsImages[minPriceIndex].Click();
+
+            }
+            else
+            {
+                featuredHotelsImages = webDriver.FindElements(FeaturedHotelsImgNoPrices);
+                Wait.ClickableElement(webDriver, featuredHotelsImages[0]);
+                action.MoveToElement(featuredHotelsImages[0]).Perform();
+                featuredHotelsImages[0].Click();
+            }
+        }
+
+        public bool HasPrices()
+        {
+            FeaturedHotelsHavePrices = false;
             for (int i = 0; i < featuredHotelsPricesList.Count; i++)
             {
-                if (! featuredHotelsPricesList[i].Displayed)
+                if (!featuredHotelsPricesList[i].Displayed)
                 {
                     webDriver.FindElement(RightArrowForFeaturedHotels).Click();
+                    FeaturedHotelsHavePrices = true;
                 }
                 Wait.ClickableElement(webDriver, featuredHotelsPricesList[i]);
-                priceOptions[i] = int.Parse(featuredHotelsPricesList[i].Text.Replace("USD $",""));
+                priceOptions[i] = int.Parse(featuredHotelsPricesList[i].Text.Replace("USD $", ""));
             }
-            int minPriceIndex = Array.IndexOf(priceOptions, priceOptions.Min());
-            action.MoveToElement(featuredHotelsPricesList[minPriceIndex]).Perform();
-            featuredHotelsImages[minPriceIndex].Click();
-            
-            return new HotelPage(webDriver);
+          
 
-
+            return FeaturedHotelsHavePrices;
         }
 
 

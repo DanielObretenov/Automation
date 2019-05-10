@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace AutomationDemo.SeleniumTests.PageObjectModelEaster.HelpersEaster
 {
-    public class Alerts
+    public static class Alerts
     {
-        public IAlert alert;
+        public static IAlert alert;
 
-        public string GetAlertText(IWebDriver driver)
+        public static string GetAlertText(IWebDriver driver)
         {
             alert = driver.SwitchTo().Alert();
 
             return alert.Text;
         }
 
-        public void HandleAlert(bool accept, IWebDriver driver)
+        public static void HandleAlert(bool accept, IWebDriver driver)
         {
             alert = driver.SwitchTo().Alert();
             if (accept)
@@ -31,7 +31,7 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelEaster.HelpersEaster
             }
         }
 
-        public void EnterTextToAlert(string text, IWebDriver driver)
+        public static void EnterTextToAlert(string text, IWebDriver driver)
         {
             alert = driver.SwitchTo().Alert();
             alert.SendKeys(text);

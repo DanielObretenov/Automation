@@ -11,15 +11,7 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Tests
 {
     class HotelTests : BaseTestHomework
     {
-        [Test]
-        public void FeaturedHotelsPOM()
-        {
-            HomePage homePage = new HomePage(driver);
-            homePage.NavigateToHomePage();
-            HotelPage hotelPage =  homePage.FeaturedHoteWithLowestPrice();
-            hotelPage.WaitUntilPageLoads();
-            hotelPage.BookRoomWithLowestPrice();
-        }
+        
 
     }
 }

@@ -89,11 +89,14 @@
     <Compile Include="SeleniumTests\PageObjectModelEaster\Tests\WordGamesEasterTests.cs" />
     <Compile Include="SeleniumTests\PageObjectModelHomework\Helpers\BaseTestHomework.cs" />
     <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\BasePage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\BookHotelRoomPage.cs" />
     <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\FeaturedToursPage.cs" />
     <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\HomePage.cs" />
     <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\HotelPage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\InvoicePage.cs" />
     <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\SupplierSignUpPage.cs" />
     <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\ToursPage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Tests\BookARoomFormTests.cs" />
     <Compile Include="SeleniumTests\PageObjectModelHomework\Tests\FeaturedToursTests.cs" />
     <Compile Include="SeleniumTests\PageObjectModelHomework\Tests\HomePageTests.cs" />
     <Compile Include="SeleniumTests\PageObjectModelHomework\Tests\HotelTests.cs" />

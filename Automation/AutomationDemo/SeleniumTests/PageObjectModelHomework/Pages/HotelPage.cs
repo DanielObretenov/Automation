@@ -1,6 +1,7 @@
 ﻿using AutomationDemo.Helpers;
 using AutomationDemo.SeleniumTests.PageObjectModelEaster.HelpersEaster;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,28 +19,57 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         private static readonly By DetailsSection = By.CssSelector("div.col-md-12.go-left div.row");
         private static readonly By BookButton = By.CssSelector("button.book_button");
         private static readonly By Desctiption = By.CssSelector("div.panel-body div.visible-lg");
+        private static readonly By ControlIndicator = By.CssSelector("div.control__indicator");
+        private IList<IWebElement> listOfRoomPrices;
+        private IList<IWebElement> roomCheckBoxes;
+        private bool FeaturedHotelsHavePrices;
+        private int[] priceOptions;
+        private Actions action;
         public HotelPage(IWebDriver webDriver):base(webDriver)
         {
 
         }
 
-        public void BookRoomWithLowestPrice()
+        public BookHotelRoomPage BookRoomWithLowestPrice()
         {
             JSHelper.RunJSEaster("arguments[0].scrollIntoView(true)", webDriver.FindElement(Desctiption), this.webDriver);
             JSHelper.RunJSEaster("arguments[0].scrollIntoView(true)", webDriver.FindElement(LastRoomInList), this.webDriver);
             Wait.ClickableElement(webDriver, webDriver.FindElement(LastRoomInList));
+            listOfRoomPrices = webDriver.FindElements(AvailableRoomsPrices).ToList();
 
-
-
-            IList<IWebElement> listOfRoomPrices = webDriver.FindElements(AvailableRoomsPrices).ToList();
-            foreach (var item in listOfRoomPrices)
+            if (HasRooms())
             {
-                Console.WriteLine(item.Text);
+                roomCheckBoxes = webDriver.FindElements(ControlIndicator);
+                int minPriceIndex = Array.IndexOf(priceOptions, priceOptions.Min());
+                action.MoveToElement(roomCheckBoxes[minPriceIndex]).Perform();
+                roomCheckBoxes[minPriceIndex].Click();
+                webDriver.FindElement(BookButton).Click();
             }
+
+            return new BookHotelRoomPage(webDriver);
+
         }
         public void WaitUntilPageLoads()
         {
             Wait.VisibilityOfElement(webDriver, DetailsSection);
+        }
+
+
+        public bool HasRooms()
+        {
+            FeaturedHotelsHavePrices = false;
+
+            if(listOfRoomPrices.Count>0)
+            {
+                for (int i = 0; i < listOfRoomPrices.Count; i++)
+                {
+                    Wait.ClickableElement(webDriver, listOfRoomPrices[i]);
+                    priceOptions[i] = int.Parse(listOfRoomPrices[i].Text.Replace("USD $", ""));
+                }
+                FeaturedHotelsHavePrices = true;
+            }
+
+            return FeaturedHotelsHavePrices;
         }
 
     }
