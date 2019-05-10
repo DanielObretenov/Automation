@@ -32,13 +32,15 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
 
         public BookHotelRoomPage BookRoomWithLowestPrice()
         {
-            JSHelper.RunJSEaster("arguments[0].scrollIntoView(true)", webDriver.FindElement(Desctiption), this.webDriver);
-            JSHelper.RunJSEaster("arguments[0].scrollIntoView(true)", webDriver.FindElement(LastRoomInList), this.webDriver);
+
+            JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", webDriver.FindElement(Desctiption), this.webDriver);
+            JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", webDriver.FindElement(LastRoomInList), this.webDriver);
             Wait.ClickableElement(webDriver, webDriver.FindElement(LastRoomInList));
             listOfRoomPrices = webDriver.FindElements(AvailableRoomsPrices).ToList();
 
             if (HasRooms())
             {
+                action = new Actions(this.webDriver);
                 roomCheckBoxes = webDriver.FindElements(ControlIndicator);
                 int minPriceIndex = Array.IndexOf(priceOptions, priceOptions.Min());
                 action.MoveToElement(roomCheckBoxes[minPriceIndex]).Perform();
@@ -58,8 +60,9 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         public bool HasRooms()
         {
             FeaturedHotelsHavePrices = false;
+            priceOptions = new int[listOfRoomPrices.Count];
 
-            if(listOfRoomPrices.Count>0)
+            if (listOfRoomPrices.Count>0)
             {
                 for (int i = 0; i < listOfRoomPrices.Count; i++)
                 {

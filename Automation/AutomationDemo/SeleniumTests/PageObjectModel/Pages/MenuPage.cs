@@ -19,7 +19,7 @@ namespace AutomationDemo.SeleniumTests.PageObjectModel.Pages
 
         public bool isMenuPageLoaded()
         {
-            Wait.VisibilityOfElement(webDriver, PageTitle);
+            Wait.ClickableElement(webDriver, webDriver.FindElement(PageTitle));
             return webDriver.FindElement(PageTitle).Text.Equals(expectedTitle);
         }
         public CheckOutPage ClickOnTeaButton()

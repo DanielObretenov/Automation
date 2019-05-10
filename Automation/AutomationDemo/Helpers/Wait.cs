@@ -18,7 +18,7 @@ namespace AutomationDemo.Helpers
 {
     public static class Wait
     {
-        private static int timeoutSec = 5;
+        private static int timeoutSec = 10;
         public static void InvisibilityOfElement(IWebDriver driver, By by)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutSec));
@@ -29,6 +29,14 @@ namespace AutomationDemo.Helpers
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutSec));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(by));
+        }
+
+
+        public static void AlertIsPresent(IWebDriver driver)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutSec));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
+
         }
         public static void ClickableElement(IWebDriver driver, IWebElement element)
         {

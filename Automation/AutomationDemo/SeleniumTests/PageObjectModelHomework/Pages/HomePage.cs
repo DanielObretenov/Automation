@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
@@ -32,10 +33,10 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         private static readonly By RightArrowForFeaturedHotels = By.CssSelector("i.icon-right-open-3");
         private static readonly By BookButtonFeaturedHotels = By.XPath("//a[@class='thm-btn btn-block']");
         private static readonly By CountryNameFeaturedHotels = By.CssSelector("a.loader.wow.animated");
+        private List<string> allTabs;
         private double minPriceRoom;
         IList<IWebElement> featuredHotelsPricesList;
         IList<IWebElement> featuredHotelsImages;
-        IList<IWebElement> featuredHotelsCountryName;
         int[] priceOptions;
         Actions action;
         bool FeaturedHotelsHavePrices;
@@ -60,12 +61,17 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
 
         public HomePage(IWebDriver webDriver) : base(webDriver)
         {
-           
+
         }
-        
+
         public void NavigateToHomePage()
         {
             webDriver.Navigate().GoToUrl(HomePageUrl);
+        }
+        public HotelPage NavigateToHotelPage()
+        {
+            webDriver.Navigate().GoToUrl("https://www.phptravels.net/hotels/detail/Dubai/Hyatt-Regency-Perth");
+            return new HotelPage(this.webDriver);
         }
 
         public void NavigateToToursTab()
@@ -111,12 +117,12 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
 
         public HotelPage FeaturedHoteWithLowestPrice()
         {
-         
+
             action = new Actions(webDriver);
-            JSHelper.RunJSEaster("arguments[0].scrollIntoView(true)", webDriver.FindElement(FeaturedHotelsSection), this.webDriver);
+            JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", webDriver.FindElement(FeaturedHotelsSection), this.webDriver);
             featuredHotelsPricesList = webDriver.FindElements(FeaturedHotelsPrices);
             featuredHotelsImages = webDriver.FindElements(FeaturedHotelsImg);
-            int[] priceOptions = new int[featuredHotelsPricesList.Count];
+            priceOptions = new int[featuredHotelsPricesList.Count];
             ClickOnFeaturedHotel();
             return new HotelPage(webDriver);
         }
@@ -153,7 +159,7 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
                 Wait.ClickableElement(webDriver, featuredHotelsPricesList[i]);
                 priceOptions[i] = int.Parse(featuredHotelsPricesList[i].Text.Replace("USD $", ""));
             }
-          
+
 
             return FeaturedHotelsHavePrices;
         }
@@ -175,25 +181,41 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         {
             return webDriver.FindElement(TourTab).Text.Equals(expMsgChangeToEN);
         }
-        
+
         public SupplierSignUpPage NavigateToSupplierSignUpPageByFooter()
         {
             Wait.VisibilityOfElement(webDriver, FooterSection);
             webDriver.FindElement(cookieButtonGotIt).Click();
             webDriver.SwitchTo().DefaultContent();
             webDriver.FindElement(FooterSectionSignUpButton).Click();
-            List<string> allTabs = webDriver.WindowHandles.ToList();
+            allTabs = webDriver.WindowHandles.ToList();
+            waitForTabsList();
             webDriver.SwitchTo().Window(allTabs[1]);
             return new SupplierSignUpPage(webDriver);
         }
 
+
+        public void waitForTabsList()
+        {
+            int counter = 0;
+            while (allTabs.Count < 2)
+            {
+                allTabs = webDriver.WindowHandles.ToList();
+                if (counter > 200)
+                {
+                    break;
+                }
+                counter++;
+            }
+        }
         public void featuredToursLowestPrice()
         {
         
             IList<IWebElement> tourPricesList = webDriver.FindElements(TourPrices);
             IWebElement tableFeaturedHotels = webDriver.FindElement(TableFeaturedHotels);
-            RunningJSTests runJS = new RunningJSTests();
-            runJS.RunJS("arguments[0].scrollIntoView(true)", tableFeaturedHotels);
+    
+            JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", tableFeaturedHotels, this.webDriver);
+
 
             int[] array = new int[tourPricesList.Count];
             for (int i = 0; i < tourPricesList.Count; i++)

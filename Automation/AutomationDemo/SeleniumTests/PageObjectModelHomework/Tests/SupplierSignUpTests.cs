@@ -14,7 +14,9 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Tests
         [Test]
         public void OpenEasyRegistratiopn()
         {
+
             HomePage homePage = new HomePage(driver);
+            homePage.NavigateToHomePage();
             SupplierSignUpPage supplierSignUpPage = homePage.NavigateToSupplierSignUpPageByFooter();
             supplierSignUpPage.OpenEasyRegistrationForm();
             Assert.IsTrue(supplierSignUpPage.ConfirmTextVisiblity());

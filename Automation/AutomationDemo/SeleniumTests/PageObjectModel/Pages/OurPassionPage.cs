@@ -18,7 +18,7 @@ namespace AutomationDemo.SeleniumTests.PageObjectModel.Pages
 
         public bool isOurPassionCorrectTitle()
         {
-            return this.webDriver.FindElement(PageTitle).Text.Equals(expectedPageTitle);
+            return webDriver.FindElement(PageTitle).Text.Equals(expectedPageTitle);
         }
     }
 }

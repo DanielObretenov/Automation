@@ -11,11 +11,11 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelEaster.HelpersEaster
     {
        
         
-        public static void RunJSEaster(string script, IWebDriver driver)
+        public static void RunJSHelper(string script, IWebDriver driver)
         {
             ((IJavaScriptExecutor)driver).ExecuteScript(script);
         }
-        public static  void RunJSEaster(string script, IWebElement el, IWebDriver driver)
+        public static  void RunJSHelper(string script, IWebElement el, IWebDriver driver)
         {
             ((IJavaScriptExecutor)driver).ExecuteScript(script, el);
         }

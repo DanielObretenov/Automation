@@ -48,7 +48,7 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelEaster.Pages
             for (int i = 0; i < optionsList.Count - 2; i++)
             {
                 optionsList[i].Click();
-                JSHelper.RunJSEaster("arguments[0].scrollIntoView(true)", webDriver.FindElement(BodyiFrame), this.webDriver);
+                JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", webDriver.FindElement(BodyiFrame), this.webDriver);
                 questionsList[i].Click();
 
             }
@@ -59,7 +59,7 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelEaster.Pages
             for (int i = optionsList.Count-2; i < optionsList.Count; i++)
             {
                 optionsList[i].Click();
-                JSHelper.RunJSEaster("arguments[0].scrollIntoView(true)", webDriver.FindElement(BodyiFrame), this.webDriver);
+                JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", webDriver.FindElement(BodyiFrame), this.webDriver);
                 questionsList[i].Click();
             }
         }
@@ -87,7 +87,7 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelEaster.Pages
             {
                 optionsList[i].Click();
                // RunJSEaster("arguments[0].scrollIntoView(true)", webDriver.FindElement(BodyiFrame));
-                JSHelper.RunJSEaster("arguments[0].scrollIntoView(true)", webDriver.FindElement(BodyiFrame), this.webDriver);
+                JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", webDriver.FindElement(BodyiFrame), this.webDriver);
                 questionsList[i].Click();
 
             }

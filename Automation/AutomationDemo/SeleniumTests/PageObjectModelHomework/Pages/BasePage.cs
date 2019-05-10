@@ -18,15 +18,15 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
 
 
 
-        public BasePage(IWebDriver driver )
+        public BasePage(IWebDriver driver)
         {
             this.webDriver = driver;
-           // int random ;
+            // int random ;
         }
 
         protected static readonly By cookieButtonGotIt = By.CssSelector("#cookyGotItBtn");
         protected static readonly By homePageButtonNav = By.CssSelector("[href='https://www.phptravels.net/']");
 
-   
+
     }
 }
