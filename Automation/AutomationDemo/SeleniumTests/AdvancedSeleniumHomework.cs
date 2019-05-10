@@ -125,10 +125,10 @@ namespace AutomationDemo.SeleniumTests
             IList<IWebElement> bookButtons = driver.FindElements(By.XPath("//a[@class='thm-btn btn-block']"));
             int minPriceRoom = array[minPriceIndex];
             bookButtons[minPriceIndex].Click();
+
+
+
             Wait.VisibilityOfElement(driver, By.CssSelector("div.fotorama__stage"));
-
-
-
             driver.SwitchTo().Frame("mapframe");
             IWebElement mapError = driver.FindElement(By.XPath("//div[@class='gm-err-title']"));
             Console.WriteLine(mapError.Text);

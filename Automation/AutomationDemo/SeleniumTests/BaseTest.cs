@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,10 @@ namespace AutomationDemo.SeleniumTests
         [SetUp]
         public void SetDriver()
         {
-            new DriverManager().SetUpDriver(new ChromeConfig());
-            driver = new ChromeDriver();
+            new DriverManager().SetUpDriver(new FirefoxConfig());
+             driver = new FirefoxDriver();
+
+            //driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             driver.Manage().Window.Maximize();
 
 
@@ -35,6 +38,22 @@ namespace AutomationDemo.SeleniumTests
         {
             driver.Dispose();
         }
+
+
+
+       
+        [TearDown]
+        public void TakeScreenshot()
+        {
+            if (TestContext.CurrentContext.Result.Outcome!= 
+                NUnit.Framework.Interfaces.ResultState.Success)
+            {
+                var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+                string screenshotFileName = TestContext.CurrentContext.Test.FullName;
+                screenshot.SaveAsFile(@"D:\"+screenshotFileName+".png");
+            }
+        }
+
 
         public string GetAlertText()
         {
@@ -71,18 +90,5 @@ namespace AutomationDemo.SeleniumTests
             ((IJavaScriptExecutor)driver).ExecuteScript(script, el);
         }
 
-
-       
-        [TearDown]
-        public void TakeScreenshot()
-        {
-            if (TestContext.CurrentContext.Result.Outcome!= 
-                NUnit.Framework.Interfaces.ResultState.Success)
-            {
-                var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-                string screenshotFileName = TestContext.CurrentContext.Test.FullName;
-                screenshot.SaveAsFile(@"D:\"+screenshotFileName+".png");
-            }
-        }
     }
 }

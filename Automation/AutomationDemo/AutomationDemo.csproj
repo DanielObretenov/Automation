@@ -77,6 +77,37 @@
     <Compile Include="Interest.cs" />
     <Compile Include="SeleniumTests\BaseTest.cs" />
     <Compile Include="SeleniumTests\BasicSeleniumTests.cs" />
+    <Compile Include="Helpers\Alerts.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelEaster\HelpersEaster\BaseTestEaster.cs" />
+    <Compile Include="Helpers\JSHelper.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelEaster\Pages\BasePageEaster.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelEaster\Pages\HomePageEaster.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelEaster\Pages\TopicsPageEasterPage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelEaster\Pages\WordGamesEasterPage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelEaster\Tests\HomeTestEaster.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelEaster\Tests\TopicsTestEaster.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelEaster\Tests\WordGamesEasterTests.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Helpers\BaseTestHomework.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\BasePage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\FeaturedToursPage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\HomePage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\HotelPage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\SupplierSignUpPage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Pages\ToursPage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Tests\FeaturedToursTests.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Tests\HomePageTests.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Tests\HotelTests.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Tests\SupplierSignUpTests.cs" />
+    <Compile Include="SeleniumTests\PageObjectModelHomework\Tests\ToursFilterTest.cs" />
+    <Compile Include="SeleniumTests\PageObjectModel\Pages\BasePage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModel\Pages\CheckOutPage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModel\Pages\HomePage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModel\Pages\LetsTalkTeaPage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModel\Pages\MenuPage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModel\Pages\OurPassionPage.cs" />
+    <Compile Include="SeleniumTests\PageObjectModel\Tests\CheckOutTests.cs" />
+    <Compile Include="SeleniumTests\PageObjectModel\Tests\HomePageTests.cs" />
+    <Compile Include="SeleniumTests\PageObjectModel\Tests\LetsTalkTeaTests.cs" />
     <Compile Include="SeleniumTests\RunningJSTests.cs" />
     <Compile Include="SeleniumTests\WaitingTests.cs" />
     <Compile Include="UnitTest1.cs" />
@@ -88,6 +119,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
