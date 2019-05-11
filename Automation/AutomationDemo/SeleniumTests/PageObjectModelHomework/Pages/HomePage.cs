@@ -123,7 +123,7 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         {
             webDriver.Navigate().GoToUrl(HomePageUrl);
         }
-        public HotelPage NavigateToHotelPage()
+        public HotelPage NavigateToAHotelWithRooms()
         {
             webDriver.Navigate().GoToUrl("https://www.phptravels.net/hotels/detail/Islamabad/Islamabad-Marriott-Hotel");
             return new HotelPage(this.webDriver);

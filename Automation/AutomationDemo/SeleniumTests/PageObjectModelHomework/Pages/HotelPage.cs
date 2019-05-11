@@ -21,8 +21,6 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         //private static readonly By BookButton = By.CssSelector("button.book_button");
         //private static readonly By Desctiption = By.CssSelector("div.panel-body div.visible-lg");
         //private static readonly By ControlIndicator = By.CssSelector("div.control__indicator");
-        private IList<IWebElement> listOfRoomPrices;
-        private IList<IWebElement> roomCheckBoxes;
         private bool FeaturedHotelsHavePrices;
         private int[] priceOptions;
         private Actions action;
@@ -30,11 +28,11 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         private string expMsg = "Please Login to add to wishlist.";
 
 
-        [FindsBy(How = How.CssSelector, Using = "#ROOMS tr")]
-        protected IWebElement AvailableRooms;
+        [FindsBy(How = How.CssSelector, Using = "#ROOMS tr:last-child [href='#availability38']")]
+        protected IWebElement LastRoomAvailability;
 
         [FindsBy(How = How.CssSelector, Using = "#ROOMS tr:first-child")]
-        protected IWebElement LastRoomInList;
+        protected IWebElement FirstRoomInList;
 
         [FindsBy(How = How.CssSelector, Using = "#ROOMS tr h2.book_price")]
         protected IList<IWebElement> AvailableRoomsPrices;
@@ -69,9 +67,8 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         {
 
             JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", (Desctiption), this.webDriver);
-            JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", (LastRoomInList), this.webDriver);
-            Wait.ClickableElement(webDriver, (LastRoomInList));
-            listOfRoomPrices = (AvailableRoomsPrices).ToList();
+            JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", (FirstRoomInList), this.webDriver);
+            Wait.ClickableElement(webDriver, (FirstRoomInList));
 
             if (HasRooms())
             {
@@ -94,20 +91,34 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         public bool HasRooms()
         {
             FeaturedHotelsHavePrices = false;
-            priceOptions = new int[listOfRoomPrices.Count];
+            priceOptions = new int[AvailableRoomsPrices.Count];
 
-            if (listOfRoomPrices.Count>0)
+            if (AvailableRoomsPrices.Count>0)
             {
-                for (int i = 0; i < listOfRoomPrices.Count; i++)
+                for (int i = 0; i < AvailableRoomsPrices.Count; i++)
                 {
-                    Wait.ClickableElement(webDriver, listOfRoomPrices[i]);
-                    priceOptions[i] = int.Parse(listOfRoomPrices[i].Text.Replace("USD $", ""));
+                    Wait.ClickableElement(webDriver, AvailableRoomsPrices[i]);
+                    priceOptions[i] = int.Parse(AvailableRoomsPrices[i].Text.Replace("USD $", ""));
                 }
                 FeaturedHotelsHavePrices = true;
             }
 
             return FeaturedHotelsHavePrices;
         }
+
+        public void NavigateToRoomsSection()
+        {
+            JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", (Desctiption), this.webDriver);
+            JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", (FirstRoomInList), this.webDriver);
+            Wait.ClickableElement(webDriver, (FirstRoomInList));
+        }
+        public void ClickOnLastRoomAvailability()
+        {
+            Wait.ClickableElement(webDriver, (LastRoomAvailability));
+
+            LastRoomAvailability.Click();
+        }
+
 
         public void ScrolltoAddToWishListButton()
         {
@@ -121,10 +132,12 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         {
             Alerts.HandleAlert(true, webDriver);
         }
-        public bool IsWishListMshCorrect()
+        public bool IsWishListMsgCorrect()
         {
             string ActAlertMsg = Alerts.GetAlertText(webDriver);
             return ActAlertMsg.Equals(expMsg);
         }
+
+      
     }
 }

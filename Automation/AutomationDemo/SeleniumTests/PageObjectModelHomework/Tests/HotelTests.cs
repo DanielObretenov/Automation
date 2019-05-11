@@ -18,11 +18,21 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Tests
             HomePage homePage = new HomePage(driver);
             homePage.NavigateToHomePage();
           //  HotelPage hotelPage =  homePage.FeaturedHoteWithLowestPrice();
-            HotelPage hotelPage =  homePage.NavigateToHotelPage();
+            HotelPage hotelPage =  homePage.NavigateToAHotelWithRooms();
             hotelPage.ScrolltoAddToWishListButton();
             hotelPage.ClicktoAddToWishListButton();
-            Assert.IsTrue(hotelPage.IsWishListMshCorrect());
+            Assert.IsTrue(hotelPage.IsWishListMsgCorrect());
         }
+        [Test]
+        public void CheckAvailabilityCalender()
+        {
+            HomePage homePage = new HomePage(driver);
+            homePage.NavigateToHomePage();
+            //  HotelPage hotelPage =  homePage.FeaturedHoteWithLowestPrice();
+            HotelPage hotelPage = homePage.NavigateToAHotelWithRooms();
+            hotelPage.NavigateToRoomsSection();
+            hotelPage.ClickOnLastRoomAvailability();
 
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Tests
             HomePage homePage = new HomePage(driver);
             homePage.NavigateToHomePage();
            // HotelPage hotelPage = homePage.FeaturedHoteWithLowestPrice();
-            HotelPage hotelPage = homePage.NavigateToHotelPage();
+            HotelPage hotelPage = homePage.NavigateToAHotelWithRooms();
             hotelPage.WaitUntilPageLoads();
             BookHotelRoomPage bookHotelRoomPage = hotelPage.BookRoomWithLowestPrice();
             bookHotelRoomPage.WaitForBookHotelRoomPageToLoad();
