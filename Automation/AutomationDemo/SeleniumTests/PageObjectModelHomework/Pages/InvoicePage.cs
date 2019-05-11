@@ -1,6 +1,7 @@
 ﻿using AutomationDemo.Helpers;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,12 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
 {
     class InvoicePage : BasePage
     {
-        private static readonly By invoiceTable = By.CssSelector("#invoiceTable");
+        //private static readonly By invoiceTable = By.CssSelector("#invoiceTable");
+
+        [FindsBy(How = How.CssSelector, Using = "#invoiceTable")]
+        protected IWebElement invoiceTable;
+
+
         public InvoicePage(IWebDriver webDriver) : base(webDriver)
         {
 
@@ -20,12 +26,12 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
 
         public void WaitForBookHotelRoomPageToLoad()
         {
-            Wait.VisibilityOfElement(webDriver, invoiceTable);
+            Wait.ClickableElement(webDriver, invoiceTable);
         }
 
         public bool InVoiceSectionVisibility()
         {
-          return  webDriver.FindElement(invoiceTable).Displayed;
+          return invoiceTable.Displayed;
         }
 
     }

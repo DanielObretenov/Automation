@@ -16,11 +16,15 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Tests
         {
             HomePage homePage = new HomePage(driver);
             homePage.NavigateToHomePage();
+            homePage.FeaturedToursLowestPrice();
+            int price = homePage.GetLowestPriceForTour();
             FeaturedToursPage lowestPriceFeaturedTour = homePage.NavigateToFeaturedToursPageWithLowestPrice();
-            lowestPriceFeaturedTour.DisplayMapErrorMessage();
-            lowestPriceFeaturedTour.ClickAndCloseRandomShareButton();
+            //lowestPriceFeaturedTour.SwitchToFrame();
+            //lowestPriceFeaturedTour.DisplayMapErrorMessage();
+            lowestPriceFeaturedTour.ClickOnARandomShareButton();
+            lowestPriceFeaturedTour.CloseShareButton();
             lowestPriceFeaturedTour.GetPriceBox();
-            Assert.IsTrue(lowestPriceFeaturedTour.IsPriceCorrect());
+            Assert.IsTrue(price == lowestPriceFeaturedTour.IsPriceCorrect());
         }
     }
 }

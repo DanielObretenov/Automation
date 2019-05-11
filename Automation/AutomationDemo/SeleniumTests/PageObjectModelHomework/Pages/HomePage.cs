@@ -2,6 +2,7 @@
 using AutomationDemo.SeleniumTests.PageObjectModelEaster.HelpersEaster;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -15,37 +16,91 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
 {
     class HomePage : BasePage
     {
-        private static string HomePageUrl = "https://www.phptravels.net/";
-        private static readonly By TourTab = By.CssSelector("[href='#tours']");
-        private static readonly By DestinationField = By.CssSelector("#s2id_autogen5 a");
-        private static readonly By ToursCitiesOptions = By.XPath("//ul[@class='select2-results']/li[2]");
-        private static readonly By AdultsField = By.CssSelector("#adults");
-        private static readonly By TourtypeField = By.CssSelector("#tourtype");
-        private static readonly By ToursButton = By.CssSelector("#tours button");
-        private static readonly By FeaturedHotelsPrices = By.XPath("//div[@class='main_slider']//span[@class='text-center']");
-        private static readonly By FeaturedHotelsImg = By.XPath("//div[@class='main_slider']//span[@class='text-center']//..//..//..//div[@class='imgLodBg']");
-        private static readonly By FeaturedHotelsImgNoPrices = By.CssSelector("div.featured-back div.imgLodBg");
-        private static readonly By FooterSection = By.CssSelector("div.footer-section");
-        private static readonly By FooterSectionSignUpButton = By.XPath("//div[@id='footer']//a[@class='btn btn-warning']");
-        private static readonly By TourPrices = By.CssSelector("div.hotel-person span");
-        private static readonly By TableFeaturedHotels = By.XPath("//div[@class='vc_row wpb_row vc_inner vc_row-fluid vc_column-gap-30 RTL']");
-        private static readonly By FeaturedHotelsSection = By.CssSelector("div.featured-back");
-        private static readonly By RightArrowForFeaturedHotels = By.CssSelector("i.icon-right-open-3");
-        private static readonly By BookButtonFeaturedHotels = By.XPath("//a[@class='thm-btn btn-block']");
-        private static readonly By CountryNameFeaturedHotels = By.CssSelector("a.loader.wow.animated");
+        //private static readonly By TourTab = By.CssSelector("[href='#tours']");
+        //private static readonly By DestinationField = By.CssSelector("#s2id_autogen5 a");
+        //private static readonly By ToursCitiesOptions = By.XPath("//ul[@class='select2-results']/li[2]");
+        //private static readonly By AdultsField = By.CssSelector("#adults");
+        //private static readonly By TourtypeField = By.CssSelector("#tourtype");
+        //private static readonly By ToursButton = By.CssSelector("#tours button");
+        //private static readonly By FeaturedHotelsPrices = By.XPath("//div[@class='main_slider']//span[@class='text-center']");
+        //private static readonly By FeaturedHotelsImg = By.XPath("//div[@class='main_slider']//span[@class='text-center']//..//..//..//div[@class='imgLodBg']");
+        //private static readonly By FeaturedHotelsImgNoPrices = By.CssSelector("div.featured-back div.imgLodBg");
+        //private static readonly By FooterSection = By.CssSelector("div.footer-section");
+        //private static readonly By FooterSectionSignUpButton = By.XPath("//div[@id='footer']//a[@class='btn btn-warning']");
+        //private static readonly By TourPrices = By.CssSelector("div.hotel-person span");
+        //private static readonly By TableFeaturedHotels = By.XPath("//div[@class='vc_row wpb_row vc_inner vc_row-fluid vc_column-gap-30 RTL']");
+        //private static readonly By FeaturedHotelsSection = By.CssSelector("div.featured-back");
+        //private static readonly By RightArrowForFeaturedHotels = By.CssSelector("i.icon-right-open-3");
+        //private static readonly By BookButtonFeaturedHotels = By.XPath("//a[@class='thm-btn btn-block']");
+        //private static readonly By CountryNameFeaturedHotels = By.CssSelector("a.loader.wow.animated");
+
+
+     
+
+        [FindsBy(How = How.CssSelector, Using = "[href='#tours']")]
+        protected IWebElement TourTab;
+
+        [FindsBy(How = How.CssSelector, Using = "#s2id_autogen5 a")]
+        protected IWebElement DestinationField;
+
+        [FindsBy(How = How.XPath, Using = "//ul[@class='select2-results']/li[2]")]
+        protected IList<IWebElement> ToursCitiesOptions;
+
+        [FindsBy(How = How.CssSelector, Using = "#adults")]
+        protected IWebElement AdultsField;
+
+        [FindsBy(How = How.CssSelector, Using = "#tourtype")]
+        protected IWebElement TourtypeField;
+
+        [FindsBy(How = How.CssSelector, Using = "#tours button")]
+        protected IWebElement ToursButton;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='main_slider']//span[@class='text-center']")]
+        protected IList<IWebElement> FeaturedHotelsPrices;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='main_slider']//span[@class='text-center']//..//..//..//div[@class='imgLodBg']")]
+        protected IList<IWebElement> FeaturedHotelsImg;
+
+        [FindsBy(How = How.CssSelector, Using = "div.featured-back div.imgLodBg")]
+        protected IList<IWebElement> FeaturedHotelsImgNoPrices;
+
+        [FindsBy(How = How.CssSelector, Using = "div.footer-section")]
+        protected IWebElement FooterSection;
+
+        [FindsBy(How = How.XPath, Using = "//div[@id='footer']//a[@class='btn btn-warning']")]
+        protected IWebElement FooterSectionSignUpButton;
+
+        [FindsBy(How = How.CssSelector, Using = "div.hotel-person span")]
+        protected IList<IWebElement> TourPrices;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='vc_row wpb_row vc_inner vc_row-fluid vc_column-gap-30 RTL']")]
+        protected IWebElement TableFeaturedHotels;
+
+        [FindsBy(How = How.CssSelector, Using = "div.featured-back")]
+        protected IWebElement FeaturedHotelsSection;
+
+        [FindsBy(How = How.CssSelector, Using = "i.icon-right-open-3")]
+        protected IWebElement RightArrowForFeaturedHotels;
+
+        [FindsBy(How = How.XPath, Using = "//a[@class='thm-btn btn-block']")]
+        protected IList<IWebElement> BookButtonFeaturedHotels;
+
+        [FindsBy(How = How.CssSelector, Using = "a.loader.wow.animated")]
+        protected IWebElement CountryNameFeaturedHotels;
+
+
         private List<string> allTabs;
-        private double minPriceRoom;
-        IList<IWebElement> featuredHotelsPricesList;
-        IList<IWebElement> featuredHotelsImages;
+        private int[] arrayToursList;
+        public int minPriceRoom;
         int[] priceOptions;
         Actions action;
         bool FeaturedHotelsHavePrices;
 
-        public double MinPriceRoom
-        {
-            get { return minPriceRoom; }
-            set { minPriceRoom = value; }
-        }
+
+        protected int random = 0;
+        protected static Random rnd = new Random();
+
+      
 
 
         private static readonly By OpenLanguageDropdown =
@@ -70,29 +125,28 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         }
         public HotelPage NavigateToHotelPage()
         {
-            webDriver.Navigate().GoToUrl("https://www.phptravels.net/hotels/detail/Dubai/Hyatt-Regency-Perth");
+            webDriver.Navigate().GoToUrl("https://www.phptravels.net/hotels/detail/Islamabad/Islamabad-Marriott-Hotel");
             return new HotelPage(this.webDriver);
         }
 
         public void NavigateToToursTab()
         {
-            webDriver.FindElement(TourTab).Click();
+            TourTab.Click();
         }
 
         public void SelectRandomCityInToursTab()
         {
-            Wait.ClickableElement(webDriver, webDriver.FindElement(DestinationField));
-            webDriver.FindElement(DestinationField).Click();
-            Wait.ClickableElement(webDriver, webDriver.FindElement(ToursCitiesOptions));
-            IList<IWebElement> ToursCitiesOptionsList = webDriver.FindElements(ToursCitiesOptions);
-            random = rnd.Next(ToursCitiesOptionsList.Count);
-            ToursCitiesOptionsList.ElementAt(random).Click();
+            Wait.ClickableElement(webDriver,DestinationField);
+            DestinationField.Click();
+            random = rnd.Next(ToursCitiesOptions.Count);
+            Wait.ClickableElement(webDriver, ToursCitiesOptions[random]);
+            ToursCitiesOptions.ElementAt(random).Click();
         }
 
 
         public void SelectRandomAdultsinTourTab()
         {
-            SelectElement adults = new SelectElement(webDriver.FindElement(AdultsField));
+            SelectElement adults = new SelectElement(AdultsField);
             random = rnd.Next(adults.Options.Count);
             adults.Options.ElementAt(random).Click();
 
@@ -102,7 +156,7 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         public void SelectRandomTourTypeinTourTab()
         {
 
-            SelectElement tourType = new SelectElement(webDriver.FindElement(TourtypeField));
+            SelectElement tourType = new SelectElement(TourtypeField);
             random = rnd.Next(tourType.Options.Count);
             tourType.Options.ElementAt(random).Click();
         }
@@ -110,7 +164,7 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
 
         public ToursPage ClickSearchForTourButton()
         {
-            webDriver.FindElement(ToursButton).Click();
+            ToursButton.Click();
             return new ToursPage(webDriver);
         }
 
@@ -119,10 +173,8 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         {
 
             action = new Actions(webDriver);
-            JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", webDriver.FindElement(FeaturedHotelsSection), this.webDriver);
-            featuredHotelsPricesList = webDriver.FindElements(FeaturedHotelsPrices);
-            featuredHotelsImages = webDriver.FindElements(FeaturedHotelsImg);
-            priceOptions = new int[featuredHotelsPricesList.Count];
+            JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", FeaturedHotelsSection, this.webDriver);
+            priceOptions = new int[FeaturedHotelsPrices.Count];
             ClickOnFeaturedHotel();
             return new HotelPage(webDriver);
         }
@@ -130,34 +182,33 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
         public void ClickOnFeaturedHotel()
         {
 
-            if (HasPrices())
+            if (CheckPricesAreDisplayed())
             {
                 int minPriceIndex = Array.IndexOf(priceOptions, priceOptions.Min());
-                action.MoveToElement(featuredHotelsPricesList[minPriceIndex]).Perform();
-                featuredHotelsImages[minPriceIndex].Click();
+                action.MoveToElement(FeaturedHotelsPrices[minPriceIndex]).Perform();
+                FeaturedHotelsImg[minPriceIndex].Click();
 
             }
             else
             {
-                featuredHotelsImages = webDriver.FindElements(FeaturedHotelsImgNoPrices);
-                Wait.ClickableElement(webDriver, featuredHotelsImages[0]);
-                action.MoveToElement(featuredHotelsImages[0]).Perform();
-                featuredHotelsImages[0].Click();
+                Wait.ClickableElement(webDriver, FeaturedHotelsImgNoPrices[0]);
+                action.MoveToElement(FeaturedHotelsImgNoPrices[0]).Perform();
+                FeaturedHotelsImgNoPrices[0].Click();
             }
         }
 
-        public bool HasPrices()
+        public bool CheckPricesAreDisplayed()
         {
             FeaturedHotelsHavePrices = false;
-            for (int i = 0; i < featuredHotelsPricesList.Count; i++)
+            for (int i = 0; i < FeaturedHotelsPrices.Count; i++)
             {
-                if (!featuredHotelsPricesList[i].Displayed)
+                if (!FeaturedHotelsPrices[i].Displayed)
                 {
-                    webDriver.FindElement(RightArrowForFeaturedHotels).Click();
+                    RightArrowForFeaturedHotels.Click();
                     FeaturedHotelsHavePrices = true;
                 }
-                Wait.ClickableElement(webDriver, featuredHotelsPricesList[i]);
-                priceOptions[i] = int.Parse(featuredHotelsPricesList[i].Text.Replace("USD $", ""));
+                Wait.ClickableElement(webDriver, FeaturedHotelsPrices[i]);
+                priceOptions[i] = int.Parse(FeaturedHotelsPrices[i].Text.Replace("USD $", ""));
             }
 
 
@@ -179,23 +230,23 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
 
         public bool expMsgChangeLanguageToEN()
         {
-            return webDriver.FindElement(TourTab).Text.Equals(expMsgChangeToEN);
+            return TourTab.Text.Equals(expMsgChangeToEN);
         }
 
         public SupplierSignUpPage NavigateToSupplierSignUpPageByFooter()
         {
-            Wait.VisibilityOfElement(webDriver, FooterSection);
-            webDriver.FindElement(cookieButtonGotIt).Click();
+            Wait.ClickableElement(webDriver, FooterSection);
+            cookieButtonGotIt.Click();
             webDriver.SwitchTo().DefaultContent();
-            webDriver.FindElement(FooterSectionSignUpButton).Click();
+            FooterSectionSignUpButton.Click();
             allTabs = webDriver.WindowHandles.ToList();
-            waitForTabsList();
+            WaitForTabsList();
             webDriver.SwitchTo().Window(allTabs[1]);
             return new SupplierSignUpPage(webDriver);
         }
 
 
-        public void waitForTabsList()
+        public void WaitForTabsList()
         {
             int counter = 0;
             while (allTabs.Count < 2)
@@ -208,30 +259,32 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Pages
                 counter++;
             }
         }
-        public void featuredToursLowestPrice()
+        public void FeaturedToursLowestPrice()
         {
         
-            IList<IWebElement> tourPricesList = webDriver.FindElements(TourPrices);
-            IWebElement tableFeaturedHotels = webDriver.FindElement(TableFeaturedHotels);
     
-            JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", tableFeaturedHotels, this.webDriver);
+            JSHelper.RunJSHelper("arguments[0].scrollIntoView(true)", TableFeaturedHotels, this.webDriver);
 
 
-            int[] array = new int[tourPricesList.Count];
-            for (int i = 0; i < tourPricesList.Count; i++)
+            arrayToursList = new int[TourPrices.Count];
+            for (int i = 0; i < TourPrices.Count; i++)
             {
-                string currentWord = Regex.Replace(tourPricesList[i].Text, "[^0-9.]", "");
-                bool newValue = int.TryParse(currentWord, out array[i]);
+                string currentWord = Regex.Replace(TourPrices[i].Text, "[^0-9.]", "");
+                bool newValue = int.TryParse(currentWord, out arrayToursList[i]);
             }
-            int minPriceIndex = Array.IndexOf(array, array.Min());
-            IList<IWebElement> bookButtons = webDriver.FindElements(BookButtonFeaturedHotels);
-            minPriceRoom = array[minPriceIndex];
-            bookButtons[minPriceIndex].Click();
+            int minPriceIndex = Array.IndexOf(arrayToursList, arrayToursList.Min());
+            minPriceRoom = arrayToursList[minPriceIndex];
+            BookButtonFeaturedHotels[minPriceIndex].Click();
 
+        }
+
+
+        public int GetLowestPriceForTour()
+        {
+            return minPriceRoom;
         }
         public FeaturedToursPage NavigateToFeaturedToursPageWithLowestPrice()
         {
-            featuredToursLowestPrice();
             return new FeaturedToursPage(webDriver);
         }
     }

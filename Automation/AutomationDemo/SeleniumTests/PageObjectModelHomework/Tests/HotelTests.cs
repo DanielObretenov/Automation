@@ -11,7 +11,18 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Tests
 {
     class HotelTests : BaseTestHomework
     {
-        
+
+        [Test]
+        public void AddToWishlistMessage()
+        {
+            HomePage homePage = new HomePage(driver);
+            homePage.NavigateToHomePage();
+          //  HotelPage hotelPage =  homePage.FeaturedHoteWithLowestPrice();
+            HotelPage hotelPage =  homePage.NavigateToHotelPage();
+            hotelPage.ScrolltoAddToWishListButton();
+            hotelPage.ClicktoAddToWishListButton();
+            Assert.IsTrue(hotelPage.IsWishListMshCorrect());
+        }
 
     }
 }

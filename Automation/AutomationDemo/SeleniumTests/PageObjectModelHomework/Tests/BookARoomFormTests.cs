@@ -16,14 +16,14 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelHomework.Tests
         {
             HomePage homePage = new HomePage(driver);
             homePage.NavigateToHomePage();
-            HotelPage hotelPage = homePage.FeaturedHoteWithLowestPrice();
+           // HotelPage hotelPage = homePage.FeaturedHoteWithLowestPrice();
+            HotelPage hotelPage = homePage.NavigateToHotelPage();
             hotelPage.WaitUntilPageLoads();
             BookHotelRoomPage bookHotelRoomPage = hotelPage.BookRoomWithLowestPrice();
             bookHotelRoomPage.WaitForBookHotelRoomPageToLoad();
             InvoicePage invoicePage = bookHotelRoomPage.FillOutForm();
             invoicePage.WaitForBookHotelRoomPageToLoad();
             Assert.IsTrue(invoicePage.InVoiceSectionVisibility());
-           
         }
 
     }
