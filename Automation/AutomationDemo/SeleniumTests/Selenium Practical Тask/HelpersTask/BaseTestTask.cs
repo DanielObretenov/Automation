@@ -12,22 +12,17 @@ using System.Threading.Tasks;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 
-namespace AutomationDemo.SeleniumTests.PageObjectModelEaster.HelpersEaster
+namespace AutomationDemo.SeleniumTests.Selenium_Practical_Тask.HelpersTask
 {
-    public class BaseTestHomework
+    public class BaseTestTask
     {
-
         public IWebDriver driver;
-
 
         [SetUp]
         public void SetDriver()
         {
             InitializeBrowser();
             driver.Manage().Window.Maximize();
-
-            //driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-            //  driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5); 
         }
 
         public void InitializeBrowser()
@@ -46,24 +41,13 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelEaster.HelpersEaster
                     new DriverManager().SetUpDriver(new InternetExplorerConfig());
                     driver = new InternetExplorerDriver();
                     break;
-
             }
         }
-
-        //[TearDown]
-        //public void QuitDriver()
-        //{
-          
-        //}
-
-
-
-
         [TearDown]
-        public void TakeScreenshotAndQuitDriver()
+        public void TakeScreenShotAndQuitBrowser()
         {
             if (TestContext.CurrentContext.Result.Outcome !=
-                NUnit.Framework.Interfaces.ResultState.Success)
+               NUnit.Framework.Interfaces.ResultState.Success)
             {
                 var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
                 string screenshotFileName = TestContext.CurrentContext.Test.FullName;

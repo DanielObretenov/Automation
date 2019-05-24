@@ -9,8 +9,6 @@ namespace AutomationDemo.SeleniumTests.PageObjectModelEaster.HelpersEaster
 {
     public static class JSHelper 
     {
-       
-        
         public static void RunJSHelper(string script, IWebDriver driver)
         {
             ((IJavaScriptExecutor)driver).ExecuteScript(script);

@@ -33,17 +33,17 @@ namespace AutomationDemo.SeleniumTests
             //  driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5); 
         }
 
+        //[TearDown]
+        //public void QuitDriver()
+        //{
+        
+        //}
+
+
+
+
         [TearDown]
-        public void QuitDriver()
-        {
-            driver.Dispose();
-        }
-
-
-
-       
-        [TearDown]
-        public void TakeScreenshot()
+        public void TakeScreenshotAndDispose()
         {
             if (TestContext.CurrentContext.Result.Outcome!= 
                 NUnit.Framework.Interfaces.ResultState.Success)
@@ -52,6 +52,7 @@ namespace AutomationDemo.SeleniumTests
                 string screenshotFileName = TestContext.CurrentContext.Test.FullName;
                 screenshot.SaveAsFile(@"D:\"+screenshotFileName+".png");
             }
+            driver.Dispose();
         }
 
 

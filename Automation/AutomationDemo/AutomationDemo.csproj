@@ -113,7 +113,17 @@
     <Compile Include="SeleniumTests\PageObjectModel\Tests\HomePageTests.cs" />
     <Compile Include="SeleniumTests\PageObjectModel\Tests\LetsTalkTeaTests.cs" />
     <Compile Include="SeleniumTests\RunningJSTests.cs" />
+    <Compile Include="SeleniumTests\Selenium Practical Тask\HelpersTask\BaseTestTask.cs" />
+    <Compile Include="SeleniumTests\Selenium Practical Тask\Pages\AdminAllCategoriesPage.cs" />
+    <Compile Include="SeleniumTests\Selenium Practical Тask\Pages\AdminCreateProductPage.cs" />
+    <Compile Include="SeleniumTests\Selenium Practical Тask\Pages\AdminDashboardPage.cs" />
+    <Compile Include="SeleniumTests\Selenium Practical Тask\Pages\AdminLoginPage.cs" />
+    <Compile Include="SeleniumTests\Selenium Practical Тask\Pages\AdminTabletCategoryPage.cs" />
+    <Compile Include="SeleniumTests\Selenium Practical Тask\Pages\BasePageTask.cs" />
+    <Compile Include="SeleniumTests\Selenium Practical Тask\Pages\HomePageTask.cs" />
+    <Compile Include="SeleniumTests\Selenium Practical Тask\Test\AdminTabletCategoryTests.cs" />
     <Compile Include="SeleniumTests\WaitingTests.cs" />
+    <Compile Include="TodoListMePage.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

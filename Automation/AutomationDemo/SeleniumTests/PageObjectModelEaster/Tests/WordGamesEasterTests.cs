@@ -9,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace AutomationDemo.SeleniumTests.PageObjectModelEaster.Tests
 {
+
+    [TestFixture]
     class WordGamesEasterTests: BaseTestEaster
     {
+
         [Test]
         public void PlayEasterGame()
         {
