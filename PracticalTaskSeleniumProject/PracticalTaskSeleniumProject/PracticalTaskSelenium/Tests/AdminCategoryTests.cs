@@ -17,7 +17,6 @@ namespace PracticalTaskSeleniumProject.PracticalTaskSelenium.Tests
         string textForDescription = "This is a full description";
         string textForShortDescription = "This is a short description";
         string MultiActionDropDownDeactivate = "Deactivate";
-        string MultiActionDropDownDelete = "Delete";
 
         [Test, Order(1)]
         [Category("Practice")]
@@ -64,7 +63,6 @@ namespace PracticalTaskSeleniumProject.PracticalTaskSelenium.Tests
             table.GetRowByTitle(titleForProduct).ClickOnCheckbox();
             adminCategoryPage.DeactivateFromMultiActionDropDown(MultiActionDropDownDeactivate);
             table = adminCategoryPage.AgreeToDisableProductAlert();
-            Thread.Sleep(2000);
             Assert.IsTrue(adminCategoryPage.IsProductDeactivated());
            
         }
