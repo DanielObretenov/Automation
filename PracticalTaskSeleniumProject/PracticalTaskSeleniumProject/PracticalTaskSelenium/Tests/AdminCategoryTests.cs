@@ -26,8 +26,7 @@ namespace PracticalTaskSeleniumProject.PracticalTaskSelenium.Tests
             HomePage homePage = new HomePage(driver);
             homePage.NavigateToHomePage();
             AdminLoginPage adminLoginPage = homePage.NavigateToAdminLogInPage();
-            // driver.Navigate().GoToUrl("http://demo.vamshop.com/users/admin_login");
-            //AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+
             AdminDashboardPage adminDashboardPage = adminLoginPage.LogInAsAdmin();
             AdminAllCategoriesPage adminAllCategoriesPage = adminDashboardPage.NavigateToAllCategoriesPage();
             AdminCreateOrEditProductPage adminCreateProductPage =  adminAllCategoriesPage.clickOnCreateNewButton();
@@ -50,7 +49,6 @@ namespace PracticalTaskSeleniumProject.PracticalTaskSelenium.Tests
             AdminCreateOrEditProductPage adminEditProductPage = table.GetRowByTitle(titleForProduct).ClickOnTitle();
             adminEditProductPage.OpenAttributesTab();
             adminEditProductPage.SetAttributesValueToStorage16();
-            //AdminCreateOrEditProductPage adminEditProductPage1 = new AdminCreateOrEditProductPage(driver);
             AdminCategoryPage adminCategoryPageAtribute = adminEditProductPage.SubmitProduct();
             Assert.IsTrue(adminCategoryPageAtribute.IsAlertForAttributesDisplayed());
         }

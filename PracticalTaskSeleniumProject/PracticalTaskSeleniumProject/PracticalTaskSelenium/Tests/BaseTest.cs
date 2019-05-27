@@ -47,18 +47,18 @@ namespace PracticalTaskSeleniumProject.PracticalTaskSelenium.Tests
             }
         }
 
-        //[TearDown]
-        //public void TakeScreenshotAndQuit()
-        //{
-        //    if (TestContext.CurrentContext.Result.Outcome !=
-        //        NUnit.Framework.Interfaces.ResultState.Success)
-        //    {
-        //        var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-        //        string screenshotFileName = TestContext.CurrentContext.Test.FullName;
-        //        screenshot.SaveAsFile(@"D:\" + screenshotFileName + ".png");
-        //    }
-        //    driver.Dispose();
-        //}
+        [OneTimeTearDown]
+        public void TakeScreenshotAndQuit()
+        {
+            if (TestContext.CurrentContext.Result.Outcome !=
+                NUnit.Framework.Interfaces.ResultState.Success)
+            {
+                var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+                string screenshotFileName = TestContext.CurrentContext.Test.FullName;
+                screenshot.SaveAsFile(@"D:\" + screenshotFileName + ".png");
+            }
+            driver.Dispose();
+        }
 
     }
 }
