@@ -22,11 +22,10 @@ namespace PracticalTaskSeleniumProject.PracticalTaskSelenium.Tests
         [Category("Practice")]
         public void CreateProduct()
         {
-
             HomePage homePage = new HomePage(driver);
             homePage.NavigateToHomePage();
             AdminLoginPage adminLoginPage = homePage.NavigateToAdminLogInPage();
-
+            
             AdminDashboardPage adminDashboardPage = adminLoginPage.LogInAsAdmin();
             AdminAllCategoriesPage adminAllCategoriesPage = adminDashboardPage.NavigateToAllCategoriesPage();
             AdminCreateOrEditProductPage adminCreateProductPage =  adminAllCategoriesPage.clickOnCreateNewButton();

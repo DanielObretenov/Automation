@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using PracticalTaskSeleniumProject.Helpers;
@@ -13,6 +14,7 @@ namespace PracticalTaskSeleniumProject.PracticalTaskSelenium.Pages
 {
     class AdminCategoryPage:BasePage
     {
+        Actions actions; 
         [FindsBy(How = How.XPath, Using = "//div[@id='flashMessage']")]
         protected IWebElement successMessage ;
 

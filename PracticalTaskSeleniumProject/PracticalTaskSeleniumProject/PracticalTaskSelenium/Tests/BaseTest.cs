@@ -17,6 +17,7 @@ using WebDriverManager.DriverConfigs.Impl;
 
 namespace PracticalTaskSeleniumProject.PracticalTaskSelenium.Tests
 {
+    [TestFixture]
     public class BaseTest
     {
         public IWebDriver driver;
