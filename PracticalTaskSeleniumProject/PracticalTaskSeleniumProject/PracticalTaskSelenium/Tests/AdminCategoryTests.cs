@@ -62,6 +62,7 @@ namespace PracticalTaskSeleniumProject.PracticalTaskSelenium.Tests
             table = adminCategoryPage.AgreeToDisableProductAlert();
             Assert.IsTrue(adminCategoryPage.IsProductDeactivated());
            
+
         }
  
         
