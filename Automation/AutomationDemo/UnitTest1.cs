@@ -18,6 +18,7 @@ namespace AutomationTest
             driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             driver.Manage().Window.Maximize();
         }
+
         [Test]
         [Category("SimpleTests")]
 
